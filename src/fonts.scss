@@ -1,0 +1,230 @@
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-BlackItalic.eot");
+  src: local("Axiforma Black Italic"), local("Axiforma-BlackItalic"),
+    url("/assets/fonts/Axiforma-BlackItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-BlackItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Bold.eot");
+  src: local("Axiforma Bold"), local("Axiforma-Bold"),
+    url("/assets/fonts/Axiforma-Bold.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Bold.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-ThinItalic.eot");
+  src: local("Axiforma Thin Italic"), local("Axiforma-ThinItalic"),
+    url("/assets/fonts/Axiforma-ThinItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-ThinItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Heavy.eot");
+  src: local("Axiforma Heavy"), local("Axiforma-Heavy"),
+    url("/assets/fonts/Axiforma-Heavy.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Heavy.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Heavy.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Medium.eot");
+  src: local("Axiforma Medium"), local("Axiforma-Medium"),
+    url("/assets/fonts/Axiforma-Medium.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Medium.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-LightItalic.eot");
+  src: local("Axiforma Light Italic"), local("Axiforma-LightItalic"),
+    url("/assets/fonts/Axiforma-LightItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-LightItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-BoldItalic.eot");
+  src: local("Axiforma Bold Italic"), local("Axiforma-BoldItalic"),
+    url("/assets/fonts/Axiforma-BoldItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-BoldItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-BookItalic.eot");
+  src: local("Axiforma Book Italic"), local("Axiforma-BookItalic"),
+    url("/assets/fonts/Axiforma-BookItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-BookItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-BookItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-SemiBold.eot");
+  src: local("Axiforma SemiBold"), local("Axiforma-SemiBold"),
+    url("/assets/fonts/Axiforma-SemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-SemiBold.woff") format("woff"),
+    url("/assets/fonts/Axiforma-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Black.eot");
+  src: local("Axiforma Black"), local("Axiforma-Black"),
+    url("/assets/fonts/Axiforma-Black.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Black.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Thin.eot");
+  src: local("Axiforma Thin"), local("Axiforma-Thin"),
+    url("/assets/fonts/Axiforma-Thin.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Thin.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Book.eot");
+  src: local("Axiforma Book"), local("Axiforma-Book"),
+    url("/assets/fonts/Axiforma-Book.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Book.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Book.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-ExtraBold.eot");
+  src: local("Axiforma ExtraBold"), local("Axiforma-ExtraBold"),
+    url("/assets/fonts/Axiforma-ExtraBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-ExtraBold.woff") format("woff"),
+    url("/assets/fonts/Axiforma-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-HeavyItalic.eot");
+  src: local("Axiforma Heavy Italic"), local("Axiforma-HeavyItalic"),
+    url("/assets/fonts/Axiforma-HeavyItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-HeavyItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-HeavyItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-MediumItalic.eot");
+  src: local("Axiforma Medium Italic"), local("Axiforma-MediumItalic"),
+    url("/assets/fonts/Axiforma-MediumItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-MediumItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Italic.eot");
+  src: local("Axiforma Italic"), local("Axiforma-Italic"),
+    url("/assets/fonts/Axiforma-Italic.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Italic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-SemiBoldItalic.eot");
+  src: local("Axiforma SemiBold Italic"), local("Axiforma-SemiBoldItalic"),
+    url("/assets/fonts/Axiforma-SemiBoldItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-SemiBoldItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Regular.eot");
+  src: local("Axiforma Regular"), local("Axiforma-Regular"),
+    url("/assets/fonts/Axiforma-Regular.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Regular.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-Light.eot");
+  src: local("Axiforma Light"), local("Axiforma-Light"),
+    url("/assets/fonts/Axiforma-Light.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-Light.woff") format("woff"),
+    url("/assets/fonts/Axiforma-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("/assets/fonts/Axiforma-ExtraBoldItalic.eot");
+  src: local("Axiforma ExtraBold Italic"), local("Axiforma-ExtraBoldItalic"),
+    url("/assets/fonts/Axiforma-ExtraBoldItalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("/assets/fonts/Axiforma-ExtraBoldItalic.woff") format("woff"),
+    url("/assets/fonts/Axiforma-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}

@@ -1,0 +1,17 @@
+<section class="section" style="--section-color: {{ sectionInfo.color }}">
+   <div class="">
+      <div class="icon-wrapper">
+         <mat-icon>question_mark</mat-icon>
+      </div>
+      <h3 class="section__subtitle">{{ sectionInfo.subTitle }}</h3>
+      <h1 class="section__title">{{ sectionInfo.title | titlecase }}</h1>
+      <p class="section__content">{{ sectionInfo.content }}</p>
+   </div>
+   <div class="img-wrapper w-full h-full">
+      <img
+         class="w-full h-full object-cover"
+         [src]="sectionInfo.imageUrl"
+         [alt]="sectionInfo.title"
+      />
+   </div>
+</section>

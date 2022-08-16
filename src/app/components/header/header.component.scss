@@ -1,0 +1,48 @@
+@import "../../../colors.scss";
+
+@keyframes fadeDown {
+   from {
+      opacity: 0;
+      top: -50px;
+   }
+   to {
+      opacity: 1;
+      top: 0;
+   }
+}
+
+.navbar {
+   font-size: 0.9rem;
+   font-weight: 600;
+   color: #292d34;
+   text-transform: capitalize;
+   height: 100%;
+
+   &--scrolled {
+      background-color: white;
+      position: fixed;
+      width: 100%;
+      height: fit-content;
+      top: 0;
+      z-index: 999;
+      box-shadow: #00000024 0 10px 50px 0px;
+      animation: fadeDown 250ms ease;
+
+      .btn {
+         color: black;
+         background-color: transparent;
+
+         &--cta {
+            color: white;
+            mix-blend-mode: normal;
+            background-color: $primary;
+         }
+      }
+   }
+}
+
+h1.brand {
+   font-size: 1.2rem;
+   font-weight: 1000;
+   letter-spacing: 0em;
+}

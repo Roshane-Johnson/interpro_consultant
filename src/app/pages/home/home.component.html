@@ -1,0 +1,141 @@
+<section class="w-[80%] mx-auto mt-10 mb-20">
+   <div class="inline-block w-[40%] mr-14">
+      <h1 class="text-[50px] leading-[60px] font-black">
+         One service to <br />replace them all.
+      </h1>
+      <p class="text-sm mt-4 mb-8">
+         All of your services in one place: Development, Design, Consulting, &
+         more.
+      </p>
+      <form #emailForm="ngForm" class="flex flex-col mb-12">
+         <input
+            type="text"
+            name="email"
+            id="email"
+            autocomplete="off"
+            placeholder="Enter your email address"
+            class="transition-all placeholder:text-xs text-base border-[#b9bec799] border-l-8 border p-4 w-full rounded-md hover:shadow-md focus:shadow-xl focus:border-primary focus:outline-primary outline-offset-0 bg-slate-50"
+         />
+         <div class="flex mt-8">
+            <button
+               type="submit"
+               class="transition-all capitalize bg-primary hover:bg-primary/80 text-center text-white text-sm flex justify-center rounded-md px-8 py-4 shadow-primary/50 shadow-lg mr-3"
+            >
+               Get a FREE Quote
+            </button>
+            <ul
+               class="flex justify-center flex-col text-sm font-semibold text-[#C1C1C1] text-[12px] leading-[18px]"
+            >
+               <li>Get a quote 100% free for the first time only.</li>
+            </ul>
+         </div>
+      </form>
+      <div class="">
+         <div class="text-yellow-400 mb-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <p class="ml-3 text-xs !text-[#C1C1C1] inline-flex">
+               Based on reviews from
+            </p>
+         </div>
+         <div class="vouch-icons flex items-center">
+            <img
+               src="/assets/icons/Google_2015_logo.svg"
+               alt="Google's Logo"
+               width="50"
+               class="mr-3"
+            />
+            <img
+               src="/assets/icons/trustpilot-1.svg"
+               alt="Trustpilot's Logo"
+               width="75"
+               class="mr-3"
+            />
+            <img
+               src="/assets/icons/TripAdvisor_Logo.svg"
+               alt="TripAdvisor's Logo"
+               width="80"
+               class="mr-3"
+            />
+         </div>
+      </div>
+   </div>
+   <div class="inline-block w-[55%] -mt-8">
+      <img
+         src="/assets/our_deisgns.png"
+         alt="Design of some projects we worked on"
+      />
+   </div>
+   <div class="flex justify-center">
+      <div
+         class="opacity-70 animate-bounce bg-white p-2 w-10 h-10 ring-1 ring-slate-900/5 shadow-lg rounded-full flex items-center justify-center"
+      >
+         <svg
+            class="w-6 h-6 text-primary"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+         >
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+         </svg>
+      </div>
+   </div>
+</section>
+
+<section id="our-expertise">
+   <h1 class="divider-label uppercase">
+      <span>Our Team Has Expertise In</span>
+   </h1>
+   <div class="technologies">
+      <img
+         src="/assets/icons/typescriptsvg.svg"
+         matTooltip="TypeScript"
+         [matTooltipPosition]="tooltipPosition"
+      />
+      <img
+         src="/assets/icons/angular.svg"
+         matTooltip="Angular"
+         [matTooltipPosition]="tooltipPosition"
+      />
+      <img
+         src="/assets/icons/javascript.svg"
+         matTooltip="JavaScript"
+         [matTooltipPosition]="tooltipPosition"
+      />
+      <img
+         src="/assets/icons/laravelsvg.svg"
+         matTooltip="Laravel"
+         [matTooltipPosition]="tooltipPosition"
+      />
+      <img
+         src="/assets/icons/php.svg"
+         matTooltip="PHP"
+         [matTooltipPosition]="tooltipPosition"
+      />
+      <img
+         src="/assets/icons/css3.svg"
+         matTooltip="CSS3"
+         [matTooltipPosition]="tooltipPosition"
+      />
+      <img
+         src="/assets/icons/html5svg.svg"
+         matTooltip="HTML5"
+         [matTooltipPosition]="tooltipPosition"
+      />
+   </div>
+   <h1 class="divider-label content-none"></h1>
+</section>
+
+<app-info-section
+   [card]="card"
+   *ngFor="let card of cards; let $i = index"
+   [reverse]="!isOddNumber($i)"
+></app-info-section>
+
+<app-normal-section [sectionInfo]="sectionInfo"></app-normal-section>

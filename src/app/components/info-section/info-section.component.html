@@ -1,0 +1,44 @@
+<section
+	class="card"
+	[ngStyle]="{ flexDirection: reverse ? 'row-reverse' : '' }"
+>
+	<div class="w-[45%]">
+		<p class="card__subtitle" [ngStyle]="{ color: card?.color }">
+			{{ card?.subTitle }}
+		</p>
+		<h2 class="card__title" style="--card-color: {{ card?.color }}">
+			{{ card?.title | titlecase }}
+		</h2>
+		<p class="card__content">
+			{{ card?.content }}
+		</p>
+	</div>
+	<div
+		class="card__visuals"
+		[ngStyle]="{ marginRight: reverse ? '80px' : '' }"
+	>
+		<video
+			*ngIf="card?.videoUrl"
+			class="aspect-video object-cover"
+			autoplay="true"
+			loop="true"
+			[src]="card?.videoUrl"
+		></video>
+
+		<img
+			*ngIf="card?.imageUrl"
+			class="aspect-video object-cover"
+			autoplay="true"
+			loop="true"
+			[src]="card?.imageUrl"
+		/>
+		<div
+			class="colored-shape"
+			[ngStyle]="{
+				color: card?.color,
+				backgroundColor: card?.color,
+				left: reverse ? '-100px' : ''
+			}"
+		></div>
+	</div>
+</section>
