@@ -1,10 +1,10 @@
-<section class="w-[80%] mx-auto mt-10 mb-20">
+<section id="section-main" class="w-[80%] mx-auto mt-10 mb-20">
    <div class="inline-block w-[40%] mr-14">
       <h1 class="text-[50px] leading-[60px] font-black">
-         One service to <br />replace them all.
+         Best Development Services located in Jamaica.
       </h1>
       <p class="text-sm mt-4 mb-8">
-         All of your services in one place: Development, Design, Consulting, &
+         All of your services in one place: Development, Design, Hosting, &
          more.
       </p>
       <form #emailForm="ngForm" class="flex flex-col mb-12">
@@ -30,8 +30,8 @@
             </ul>
          </div>
       </form>
-      <div class="">
-         <div class="text-yellow-400 mb-2">
+      <div class="vouch">
+         <div class="vouch-text text-yellow-400 mb-2">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -41,7 +41,7 @@
                Based on reviews from
             </p>
          </div>
-         <div class="vouch-icons flex items-center">
+         <div class="vouch-icons">
             <img
                src="/assets/icons/Google_2015_logo.svg"
                alt="Google's Logo"
@@ -101,6 +101,11 @@
       <img
          src="/assets/icons/angular.svg"
          matTooltip="Angular"
+         [matTooltipPosition]="tooltipPosition"
+      />
+      <img
+         src="/assets/icons/ionic.svg"
+         matTooltip="Ionic 6+"
          [matTooltipPosition]="tooltipPosition"
       />
       <img
