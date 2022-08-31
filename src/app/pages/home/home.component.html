@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section id="section-main" class="w-[80%] mx-auto mt-10 mb-20">
    <div class="inline-block w-[40%] mr-14">
       <h1 class="text-[50px] leading-[60px] font-black">
@@ -14,12 +15,12 @@
             id="email"
             autocomplete="off"
             placeholder="Enter your email address"
-            class="transition-all placeholder:text-xs text-base border-[#b9bec799] border-l-8 border p-4 w-full rounded-md hover:shadow-md focus:shadow-xl focus:border-primary focus:outline-primary outline-offset-0 bg-slate-50"
+            class="form-item form-item-end--home"
          />
          <div class="flex mt-8">
             <button
                type="submit"
-               class="transition-all capitalize bg-primary hover:bg-primary/80 text-center text-white text-sm flex justify-center rounded-md px-8 py-4 shadow-primary/50 shadow-lg mr-3"
+               class="btn--cta-home transition-all capitalize text-center text-white text-sm flex justify-center rounded-md px-8 py-4 mr-3"
             >
                Get a FREE Quote
             </button>
@@ -143,4 +144,9 @@
    [reverse]="!isOddNumber($i)"
 ></app-info-section>
 
-<app-normal-section [sectionInfo]="sectionInfo"></app-normal-section>
+<app-normal-section
+   [sectionInfo]="sectionInfo"
+   [background]="true"
+   bgColor="#00d90017"
+></app-normal-section>
+<app-footer></app-footer>

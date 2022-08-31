@@ -1,0 +1,30 @@
+@import "../../../colors.scss";
+
+.pricing-section {
+   width: 80%;
+   margin-inline: auto;
+   text-align: center;
+
+   .serivice__content {
+      width: 55%;
+      margin-inline: auto;
+      margin-block: 40px;
+      padding-block: 40px;
+      padding-inline: 30px;
+      color: #242424;
+      font-weight: 400;
+      line-height: 30px;
+      background: radial-gradient(
+            circle,
+            rgba(175, 34, 93, 0) 51%,
+            rgba(255, 255, 255, 1) 100%
+         ),
+         url("/assets/bg__with-dotted.svg");
+      background-position: center;
+   }
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+   background-color: $primary;
+}

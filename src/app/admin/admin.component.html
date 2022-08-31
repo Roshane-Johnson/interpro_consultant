@@ -1,0 +1,49 @@
+<section>
+   <mat-drawer-container class="container">
+      <mat-drawer class="sidenav" mode="side" opened>
+         <div class="sidenav-wrap">
+            <a
+               class="sidenav-item"
+               [routerLink]="[item.path]"
+               routerLinkActive="active"
+               *ngFor="let item of navItems"
+            >
+               <mat-icon>{{ item.icon }}</mat-icon>
+               <span>{{ item.name }}</span>
+            </a>
+         </div>
+      </mat-drawer>
+
+      <div class="content">
+         <div class="content-header">
+            <div class="search">
+               <mat-icon>search</mat-icon>
+               <input type="search" placeholder="Search..." />
+            </div>
+            <a href="/">Visit Homepage</a>
+            <div>
+               <div class="profile flex">
+                  <div class="relative w-10 h-10">
+                     <img
+                        class="rounded-full w-full h-full object-cover"
+                        src="/assets/man_coding.jpg"
+                     />
+                  </div>
+                  <div class="flex justify-center flex-col h-10 ml-2">
+                     <h6
+                        class="text-sm font-bold"
+                        style="color: rgb(43, 43, 43)"
+                     >
+                        Roshane Johnson
+                     </h6>
+                     <small class="text-xs text-slate-500">Admin</small>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="p-10">
+            <router-outlet></router-outlet>
+         </div>
+      </div>
+   </mat-drawer-container>
+</section>

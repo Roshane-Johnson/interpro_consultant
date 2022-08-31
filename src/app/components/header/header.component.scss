@@ -11,6 +11,14 @@
    }
 }
 
+.header-gradient {
+   position: absolute;
+   top: 0;
+   right: 0;
+   height: 90vh;
+   z-index: -1;
+}
+
 .navbar {
    font-size: 0.9rem;
    font-weight: 600;
@@ -18,14 +26,30 @@
    text-transform: capitalize;
    height: 100%;
 
+   .navbar__child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 80%;
+      margin-inline: auto;
+      padding-block: 1.5rem;
+   }
+
+   .btn--cta {
+      mix-blend-mode: screen;
+   }
+
    &--scrolled {
-      background-color: white;
       position: fixed;
       width: 100%;
       height: fit-content;
       top: 0;
       z-index: 999;
-      box-shadow: #00000024 0 10px 50px 0px;
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(18px);
+      // previous, i kinda like this one but it looks too noticeable to me
+      // box-shadow: #00000024 0 10px 50px 0px;
+      box-shadow: #0000000d 0 10px 10px 0px;
       animation: fadeDown 250ms ease;
 
       .btn {
@@ -41,7 +65,7 @@
    }
 }
 
-h1.brand {
+.brand {
    font-size: 1.2rem;
    font-weight: 1000;
    letter-spacing: 0em;

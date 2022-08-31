@@ -1,5 +1,7 @@
 @import "../../../colors.scss";
 
+$section-color: var(--section-color);
+
 .section {
    $width: 95%;
    display: grid;
@@ -10,17 +12,16 @@
    margin-inline: auto;
    padding: 95px;
    margin-bottom: 4rem;
-   background-color: rgb(248, 247, 255);
    border-radius: 60px;
 
    .icon-wrapper {
-      color: var(--section-color);
+      color: $section-color;
       box-shadow: 4px 4px 20px 0px;
       width: fit-content;
 
       .mat-icon {
          padding: 25px;
-         background-color: var(--section-color);
+         background-color: $section-color;
          color: white;
          display: grid;
          place-content: center;
@@ -31,7 +32,23 @@
 
    .img-wrapper {
       overflow: hidden;
-      border-radius: 3rem;
+      border-radius: 2rem;
+      position: relative;
+
+      .section__top-rated {
+         $positionPx: 35px;
+
+         top: $positionPx;
+         right: $positionPx;
+         position: absolute;
+         z-index: 2;
+         background-color: var(--section-color);
+         color: white;
+         padding: 5px 20px;
+         border-radius: 4px;
+         line-height: 16px;
+         font-size: x-small;
+      }
 
       img {
          transition: 4s ease;
@@ -58,7 +75,7 @@
          height: 5px;
          border-radius: 4rem;
          margin-top: 35px;
-         background-color: var(--section-color);
+         background-color: $section-color;
       }
    }
 
@@ -69,7 +86,7 @@
       line-height: 12px;
       letter-spacing: 2px;
       margin-top: 40px;
-      color: var(--section-color);
+      color: $section-color;
    }
 
    &__content {

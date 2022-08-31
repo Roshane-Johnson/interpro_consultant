@@ -1,5 +1,5 @@
 <nav class="navbar">
-   <div class="flex items-center justify-between w-4/5 mx-auto py-6">
+   <div class="navbar__child">
       <div class="inline-flex items-center">
          <div class="flex items-center">
             <img
@@ -9,16 +9,56 @@
                height="40"
                class="mr-3"
             />
-            <h1 class="brand mr-6">InterPro</h1>
+            <a class="brand mr-6 cursor-pointer" href="/">InterPro</a>
          </div>
-         <button class="mr-5">
-            Services <i class="fa-solid fa-angle-down"></i>
+         <button
+            class="dropdown__trigger mr-5"
+            (click)="dropdownToggle($event)"
+            [ngClass]="{ active: dropdownOpen }"
+         >
+            Services
+            <i class="dropdown__icon fa-solid fa-angle-down"></i>
+            <div class="dropdown dropdown--hidden">
+               <a
+                  href="/services/website-development/"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+               >
+                  Website Development
+               </a>
+               <a
+                  href="/services/mobile-application-development/"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+               >
+                  Mobile App Development
+               </a>
+               <a
+                  href="/services/website-hosting/"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+               >
+                  Website Hosting
+               </a>
+               <a
+                  href="/services/api-development/"
+                  routerLinkActive="active"
+                  class="dropdown-item"
+               >
+                  API Development
+               </a>
+            </div>
          </button>
-         <button class="mr-5">FAQ's</button>
+         <a class="mr-5" href="/faq">FAQ's</a>
       </div>
       <div class="inline-flex items-center">
-         <button class="btn bg-transparent ml-5">Contact Sales</button>
-         <button class="btn btn--cta ml-5">Get a quote</button>
+         <button class="btn bg-transparent ml-5" (click)="openRequestModal()">
+            Contact Sales
+         </button>
+         <button class="btn btn--cta ml-5" routerLink="/get-a-quote">
+            Get a quote
+         </button>
       </div>
    </div>
 </nav>
+<img class="header-gradient" src="/assets/header-gradient.svg" alt="" />

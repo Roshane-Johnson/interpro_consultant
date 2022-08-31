@@ -1,0 +1,84 @@
+<app-header></app-header>
+<div class="section">
+   <div>
+      <div class="section__subtitle">Get a Quote</div>
+      <h1 class="section__title">Need a Quote on Services?</h1>
+      <!-- <p class="section__content">
+         "When you help others feel important, you help yourself feel important
+         too." – David J. Schwartz, Author and Motivational Speaker
+      </p> -->
+      <div class="section__content">
+         "Sometimes one can become lost in a big company and lose sight of how
+         what one does truly helps or impacts the end customer. If you are one
+         of those, think of a fire brigade, a line of people passing buckets of
+         water from one to the other from a source of water to the site of the
+         fire. An individual in the brigade may not be able to see the end
+         result, i.e., the water being thrown on the fire to put it out, but the
+         contribution of the individual is indispensable to the final outcome."
+         <br />
+         – Grant Bright, Former Project Lead IBM
+      </div>
+   </div>
+   <div class="form-wrap">
+      <div class="section__title">Get a Quote</div>
+
+      <form>
+         <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            class="form-item form-item-end"
+            autocomplete="off"
+         />
+         <input
+            type="text"
+            name="email"
+            placeholder="Email Address"
+            class="form-item"
+            autocomplete="off"
+         />
+         <input
+            type="number"
+            name="name"
+            placeholder="Phone Number"
+            class="form-item form-item-end"
+            autocomplete="off"
+         />
+         <select
+            class="form-item"
+            autocomplete="off"
+            name="service"
+            aria-placeholder="Service"
+         >
+            <option disabled selected>-- Select Service --</option>
+            <option
+               *ngFor="let service of services"
+               [value]="service.name"
+            ></option>
+         </select>
+         <input
+            type="text"
+            name="company"
+            placeholder="Company"
+            class="form-item form-item-end"
+            autocomplete="off"
+         />
+         <input
+            type="text"
+            name="budget"
+            placeholder="Budget"
+            class="form-item"
+            autocomplete="off"
+         />
+         <textarea
+            name="message"
+            placeholder="Enter message here..."
+            class="form-item form-item-end col-span-2"
+            autocomplete="off"
+            rows="5"
+         ></textarea>
+         <div class="btn btn--cta col-span-2">Get Quote</div>
+      </form>
+   </div>
+</div>
+<app-footer></app-footer>

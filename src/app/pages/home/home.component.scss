@@ -1,35 +1,57 @@
+@import "../../../colors.scss";
+
 h1,
 p {
-	color: #292d34;
+   color: #292d34;
+}
+
+section#section-main {
+   .btn--cta-home {
+      background-color: $primary;
+      box-shadow: 0 10px 15px -3px rgba($color: $primary, $alpha: 0.3),
+         0 4px 6px -4px rgba($color: $primary, $alpha: 0.3);
+   }
+
+   .vouch {
+      &-text {
+         display: flex;
+         align-items: center;
+      }
+
+      &-icons {
+         display: flex;
+         align-items: center;
+      }
+   }
 }
 
 section#our-expertise {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
 
-	.technologies {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-inline: auto;
-		margin-block: 30px;
-		padding-block: 30px;
-		width: 50%;
-		background-image: url("/assets/bg__with-dotted.svg");
-		background-size: cover;
-		background-position: bottom;
+   .technologies {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-inline: auto;
+      margin-block: 30px;
+      padding-block: 30px;
+      width: 50%;
+      background-image: url("/assets/bg__with-dotted.svg");
+      background-size: cover;
+      background-position: bottom;
 
-		img {
-			margin-inline: 20px;
-			width: 50px;
-			transition: all 200ms ease;
-			filter: grayscale(100);
+      img {
+         margin-inline: 20px;
+         width: 50px;
+         transition: all 200ms ease;
+         filter: grayscale(100);
 
-			&:hover {
-				transform: scale(1.3);
-				filter: grayscale(0);
-			}
-		}
-	}
+         &:hover {
+            transform: scale(1.3);
+            filter: grayscale(0);
+         }
+      }
+   }
 }

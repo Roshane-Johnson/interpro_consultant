@@ -1,0 +1,15 @@
+<section class="pricing-section">
+   <mat-tab-group disableRipple="true" color="primary" mat-align-tabs="center">
+      <mat-tab
+         labelClass="mat-tab-border-0"
+         *ngFor="let plan of plans; let $i = index"
+         [label]="plan"
+      >
+         <p class="serivice__content">
+            <app-service-expense-card
+               [priceTable]="priceTables[$i]"
+            ></app-service-expense-card>
+         </p>
+      </mat-tab>
+   </mat-tab-group>
+</section>

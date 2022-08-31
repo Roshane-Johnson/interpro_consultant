@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="section">
+   <div class="section__subtitle">F.A.Q's</div>
+   <h1 class="section__title">Frequently Asked Questions</h1>
+   <section class="accordination">
+      <mat-accordion multi>
+         <mat-expansion-panel *ngFor="let faq of faqs" [hideToggle]="true">
+            <mat-expansion-panel-header class="faq__header">
+               <mat-panel-title>{{ faq.question | titlecase }}</mat-panel-title>
+               <mat-icon>add</mat-icon>
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+               <span class="section__content">{{ faq.answer }}</span>
+            </ng-template>
+         </mat-expansion-panel>
+      </mat-accordion>
+   </section>
+</div>
+<app-footer></app-footer>

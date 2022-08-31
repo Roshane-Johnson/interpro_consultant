@@ -1,0 +1,52 @@
+<section>
+   <div class="greeting">
+      <div>
+         <h1>Hi, Roshane Johnson</h1>
+         <p>Welcome back to InterPro's CRM Dashboard</p>
+      </div>
+      <div>
+         <div class="btn btn--cta flex justify-center">
+            <mat-icon class="mr-2">add</mat-icon>
+            <small>Quick Add</small>
+         </div>
+      </div>
+   </div>
+
+   <div class="stat-cards grid grid-cols-4 gap-x-3">
+      <div class="card">
+         <div class="flex justify-between">
+            <span class="font-bold text-xl">{{ stats.requests | number }}</span>
+            <mat-icon class="text-primary">pending_actions</mat-icon>
+         </div>
+         <p class="text-xs mt-3">Total requests made</p>
+      </div>
+
+      <div class="card">
+         <div class="flex justify-between">
+            <span class="font-bold text-xl">
+               {{ stats.questions | number }}
+            </span>
+            <mat-icon class="text-primary">question_answer</mat-icon>
+         </div>
+         <p class="text-xs mt-3">Total contacts from customers</p>
+      </div>
+
+      <div class="card bg-white rounded-lg border border-gray-200 p-8">
+         <div class="flex justify-between">
+            <span class="font-bold text-xl">{{ 33.98 | number }}</span>
+            <mat-icon class="text-primary">send</mat-icon>
+         </div>
+         <p class="text-xs mt-3">WhatsApp messages sent</p>
+      </div>
+
+      <div class="card bg-white rounded-lg border border-gray-200 p-8">
+         <div class="flex justify-between">
+            <span class="font-bold text-xl">
+               {{ 33 / 100 | percent }}
+            </span>
+            <mat-icon class="text-primary">shopping_cart</mat-icon>
+         </div>
+         <p class="text-xs mt-3">Sales performance (previous month)</p>
+      </div>
+   </div>
+</section>

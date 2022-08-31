@@ -1,0 +1,39 @@
+<section class="card" style="--card-color: {{ priceTable.color }};">
+   <div class="card__item--centered">
+      <h1 class="card__header">{{ priceTable.plan }}</h1>
+   </div>
+   <div class="card__item--centered">
+      <p class="price">
+         <ng-container *ngIf="priceTable?.plan !== 'Custom Solution'">
+            {{ priceTable.subscription?.price | currency: "USD" }}
+         </ng-container>
+
+         <span *ngIf="priceTable?.plan !== 'Custom Solution'">
+            /{{ priceTable.subscription?.period }}
+         </span>
+
+         <ng-container *ngIf="priceTable?.plan === 'Custom Solution'">
+            Custom Pricing
+         </ng-container>
+      </p>
+   </div>
+   <div
+      class="card__item"
+      mat-ripple
+      *ngFor="let feature of priceTable?.features"
+   >
+      <mat-icon
+         [ngStyle]="{ color: feature?.isActive ? priceTable.color : '#b91010' }"
+      >
+         {{ feature?.isActive ? "check_circle" : "cancel" }}
+      </mat-icon>
+      <span [ngClass]="{ 'text-orange': priceTable.plan == 'Custom Solution' }">
+         {{ feature.title }}
+      </span>
+   </div>
+   <div class="card__item card__item--centered">
+      <a [href]="priceTable.url" class="btn btn--cta" target="_blank">
+         {{ priceTable.callToAction }}
+      </a>
+   </div>
+</section>

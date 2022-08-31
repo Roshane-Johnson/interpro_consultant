@@ -2,8 +2,6 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-/* Custom SCSS below this  */
 @import "./colors.scss";
 
 html,
@@ -55,12 +53,91 @@ body {
    border-radius: 0.375rem;
    padding-inline: 1rem;
    padding-block: 0.625rem;
+   cursor: pointer;
 
    &--cta {
       color: black;
-      mix-blend-mode: screen;
       background-color: white;
+      vertical-align: baseline;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
          0 4px 6px -4px rgb(0 0 0 / 0.1);
+   }
+}
+
+.dropdown__trigger {
+   position: relative;
+   transition: all 100ms ease;
+
+   &.active {
+      color: $primary;
+
+      &::after {
+         content: "";
+         display: block;
+         position: absolute;
+         height: 5px;
+         width: 50px;
+         margin-inline: auto;
+         margin-top: 30px;
+         background-color: $primary;
+      }
+   }
+}
+
+.dropdown {
+   display: grid;
+   position: absolute;
+   top: 70px;
+   color: #292d34;
+   background-color: white;
+   border-radius: 0.375rem;
+   width: max-content;
+   border: 1px solid rgba(0, 0, 0, 0.1);
+
+   &--hidden {
+      display: none;
+   }
+
+   .dropdown-item {
+      text-align: left;
+      padding: 15px 15px;
+
+      &:hover {
+         background-color: rgba(0, 0, 0, 0.05);
+      }
+   }
+}
+
+.dropdown__icon {
+   margin-left: 5px;
+}
+
+// Dynamic Styles
+.navbar--placeholder {
+   content: normal;
+   display: block;
+   height: 89.6px;
+}
+
+/* Material Customs Styles */
+.mat-tab-nav-bar,
+.mat-tab-header {
+   border: 0;
+}
+
+.mat-dialog-container {
+   padding: 40px !important;
+   border-radius: 1.2rem !important;
+}
+
+.form-item {
+   @apply transition-all text-xs border-[#b9bec799] border p-4 w-full rounded-md hover:shadow-md focus:shadow-xl focus:border-primary focus:outline-primary outline-offset-0 bg-slate-50;
+
+   &-end {
+      @apply border-l-8;
+
+      &--home {
+         @apply py-4 border-l-8 text-base placeholder:text-xs;
+      }
    }
 }

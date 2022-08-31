@@ -1,13 +1,27 @@
-<section class="section" style="--section-color: {{ sectionInfo.color }}">
-   <div class="">
+<section
+   class="section"
+   style="--section-color: {{ sectionInfo.color }}; {{ inlineStyle }}"
+   [ngStyle]="{
+      backgroundColor:
+         background == false || background == undefined
+            ? 'transparent'
+            : bgColor
+   }"
+>
+   <div>
       <div class="icon-wrapper">
-         <mat-icon>question_mark</mat-icon>
+         <mat-icon>{{
+            sectionInfo.icon ? sectionInfo.icon : "question_mark"
+         }}</mat-icon>
       </div>
       <h3 class="section__subtitle">{{ sectionInfo.subTitle }}</h3>
-      <h1 class="section__title">{{ sectionInfo.title | titlecase }}</h1>
+      <h1 class="section__title">{{ sectionInfo.title }}</h1>
       <p class="section__content">{{ sectionInfo.content }}</p>
    </div>
    <div class="img-wrapper w-full h-full">
+      <span class="section__top-rated" *ngIf="sectionInfo.isTopRated">
+         {{ "Top Rated" | uppercase }}
+      </span>
       <img
          class="w-full h-full object-cover"
          [src]="sectionInfo.imageUrl"

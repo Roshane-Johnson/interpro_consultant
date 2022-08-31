@@ -1,0 +1,22 @@
+<app-header></app-header>
+<app-normal-section
+   [sectionInfo]="normalSection"
+   [background]="true"
+   inlineStyle="max-width: initial; width: 100%; border-radius: 0; padding: 100px 160px; min-height: 90vh; height: 80vh;"
+></app-normal-section>
+
+<div class="section">
+   <div
+      style="--card-color: {{ priceTables[0].color }};"
+      class="section__subtitle"
+   >
+      We offer quality for less price
+   </div>
+   <div class="section__title">Pricing</div>
+</div>
+
+<app-development-service
+   [priceTables]="priceTables"
+   [plans]="plans"
+></app-development-service>
+<app-footer></app-footer>
