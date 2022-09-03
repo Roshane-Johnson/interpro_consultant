@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Confirm Update for Quote Status</h2>
+<p mat-dialog-content>
+   You are about to update the quote status of
+   {{ quote ? quote.fullName : "Unknown User" }}.<br />
+</p>
+<div mat-dialog-actions align="end">
+   <button mat-button mat-dialog-close>Cancel</button>
+   <button
+      mat-flat-button
+      cdkFocusInitial
+      [mat-dialog-close]="true"
+      (click)="updateStatus()"
+      color="primary"
+   >
+      Yes, change it
+   </button>
+</div>

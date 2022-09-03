@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
@@ -23,6 +23,8 @@ import { FaqComponent } from './pages/faq/faq.component';
 import { SiteMapComponent } from './components/site-map/site-map.component';
 import { RequestModalComponent } from './components/request-modal/request-modal.component';
 import { GetAQuoteComponent } from './pages/get-a-quote/get-a-quote.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
    declarations: [
@@ -42,6 +44,7 @@ import { GetAQuoteComponent } from './pages/get-a-quote/get-a-quote.component';
       SiteMapComponent,
       RequestModalComponent,
       GetAQuoteComponent,
+      LoginComponent,
    ],
    imports: [
       BrowserModule,
@@ -52,7 +55,13 @@ import { GetAQuoteComponent } from './pages/get-a-quote/get-a-quote.component';
       BrowserAnimationsModule,
       MaterialModule,
    ],
-   providers: [],
+   providers: [
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: AuthInterceptor,
+         multi: true,
+      },
+   ],
    bootstrap: [AppComponent],
    exports: [],
 })

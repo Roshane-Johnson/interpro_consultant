@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from '../guards/admin.guard';
+import { LoginComponent } from '../pages/login/login.component';
 import { AdminComponent } from './admin.component';
-import { AdminRequestsPageComponent } from './pages/admin-requests-page/admin-requests-page.component';
+import { AdminQuotesPageComponent } from './pages/admin-quotes-page/admin-quotes-page.component';
 import { AdminDashboardPage } from './pages/dashboard/dashboard.component';
 import { AdminNotFoundPage } from './pages/not-found/not-found.component';
 
@@ -9,14 +11,16 @@ const routes: Routes = [
    {
       path: '',
       component: AdminComponent,
+      canActivate: [AdminGuard],
       children: [
-         { path: '', component: AdminDashboardPage },
+         { path: '', redirectTo: 'dashboard' },
          { path: 'dashboard', component: AdminDashboardPage },
-         { path: 'requests', component: AdminRequestsPageComponent },
+         { path: 'quotes', component: AdminQuotesPageComponent },
          { path: 'not-found', component: AdminNotFoundPage },
-         { path: '**', redirectTo: 'not-found' },
       ],
    },
+   { path: 'login', component: LoginComponent },
+   { path: '**', redirectTo: 'not-found' },
 ];
 
 @NgModule({

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { AdminRoute } from './interfaces/admin-route';
 
 @Component({
@@ -11,12 +13,17 @@ export class AdminComponent implements OnInit {
 
    navItems: AdminRoute[] = [
       { path: 'dashboard', name: 'Dashboard', icon: 'home' },
-      { path: 'requests', name: 'Customer Requests', icon: 'pending_actions' },
-      { path: 'messages', name: 'Messages', icon: 'question_answer' },
-      // { path: '/', name: 'Reports', icon: 'bar_chart  ' },
+      { path: 'quotes', name: 'Quote Requests', icon: 'pending_actions' },
+      //TODO Complete contact messages CRUD
+      // { path: 'messages', name: 'Contact Messages', icon: 'question_answer' },
    ];
 
-   constructor() {}
+   constructor(private authService: AuthService, private router: Router) {}
+
+   logout() {
+      this.authService.logout();
+      this.router.navigate(['/']);
+   }
 
    ngOnInit(): void {}
 }

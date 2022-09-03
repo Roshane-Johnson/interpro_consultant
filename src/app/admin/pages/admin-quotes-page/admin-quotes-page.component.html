@@ -1,0 +1,113 @@
+<section>
+   <div class="greeting">
+      <div>
+         <h1>Quote Requests</h1>
+         <p>
+            Requests for a quote customers have made for development services
+         </p>
+      </div>
+   </div>
+
+   <div>
+      <ng-container *ngIf="quotes.length <= 0">
+         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+         <p class="text-center mt-6">Searching for quote requests...</p>
+      </ng-container>
+      <div class="bg-white shadow-md rounded my-6" *ngIf="quotes.length > 0">
+         <table class="min-w-max w-full table-auto">
+            <thead>
+               <tr
+                  class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+               >
+                  <th class="py-3 px-6 text-left">Name</th>
+                  <th class="py-3 px-6 text-left">Phone</th>
+                  <th class="py-3 px-6 text-center">Email</th>
+                  <th class="py-3 px-6 text-left">Budget</th>
+                  <th class="py-3 px-6 text-center">Service</th>
+                  <th class="py-3 px-6 text-center">Status</th>
+                  <th class="py-3 px-6 text-center">Actions</th>
+               </tr>
+            </thead>
+            <tbody class="text-gray-600 text-sm font-light">
+               <tr
+                  *ngFor="let quote of quotes; index as i"
+                  class="border-b border-gray-200 hover:bg-gray-100"
+               >
+                  <td class="py-3 px-6 text-left whitespace-nowrap">
+                     <div class="flex items-center">
+                        <span class="font-medium">{{ quote.fullName }}</span>
+                     </div>
+                  </td>
+
+                  <td class="py-3 px-6 text-left">
+                     <div class="flex items-center">
+                        <span>{{ quote.phoneNumber }}</span>
+                     </div>
+                  </td>
+
+                  <td class="py-3 px-6 text-left">
+                     <div class="flex items-center">
+                        <span>{{ quote.email }}</span>
+                     </div>
+                  </td>
+
+                  <td class="py-3 px-6 text-left">
+                     <div class="flex items-center">
+                        <span>{{ quote.budget | currency: "USD" }}</span>
+                     </div>
+                  </td>
+
+                  <td class="py-3 px-6 text-left">
+                     <div class="flex items-center">
+                        <span>{{ quote.service.name }}</span>
+                     </div>
+                  </td>
+
+                  <td class="py-3 px-6 text-center">
+                     <span
+                        class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs"
+                     >
+                        {{ quote.status }}
+                     </span>
+                  </td>
+
+                  <td class="py-3 px-6 text-center">
+                     <div class="flex item-center justify-center">
+                        <!-- TODO implement status purpose -->
+                        <!-- <div
+                           class="px-4 flex justify-center items-center w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                        >
+                           <mat-icon
+                              [ngClass]="{
+                                 'text-green-500': quote.status == 'active',
+                                 'text-red-500': quote.status == 'inactive'
+                              }"
+                              (click)="openUpdateModal(quote._id, quote.status)"
+                           >
+                              {{
+                                 quote.status == "active"
+                                    ? "toggle_on"
+                                    : "toggle_off"
+                              }}
+                           </mat-icon>
+                        </div> -->
+                        <button
+                           (click)="openDetailsModal(quote._id)"
+                           class="px-4 flex justify-center items-center w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                        >
+                           <mat-icon>visibility</mat-icon>
+                        </button>
+                        <button
+                           class="px-4 flex justify-center items-center w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                           (click)="openDeleteModal(quote._id)"
+                        >
+                           <mat-icon>delete</mat-icon>
+                        </button>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</section>
