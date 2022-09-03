@@ -2,6 +2,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
 @import "./colors.scss";
 
 html,
@@ -127,7 +128,7 @@ body {
 
 .mat-dialog-container {
    padding: 40px !important;
-   border-radius: 1.2rem !important;
+   border-radius: 10px !important;
 }
 
 .form-item {

@@ -22,16 +22,20 @@
    <div class="form-wrap">
       <div class="section__title">Get a Quote</div>
 
-      <form>
+      <form (submit)="requestQuote(quoteForm.value)" #quoteForm="ngForm">
          <input
             type="text"
-            name="name"
+            ngModel
+            required
+            name="fullName"
             placeholder="Full Name"
             class="form-item form-item-end"
             autocomplete="off"
          />
          <input
             type="text"
+            ngModel
+            required
             name="email"
             placeholder="Email Address"
             class="form-item"
@@ -39,25 +43,31 @@
          />
          <input
             type="number"
-            name="name"
+            ngModel
+            required
+            name="phoneNumber"
             placeholder="Phone Number"
             class="form-item form-item-end"
             autocomplete="off"
          />
          <select
             class="form-item"
-            autocomplete="off"
+            ngModel
+            required
             name="service"
             aria-placeholder="Service"
          >
-            <option disabled selected>-- Select Service --</option>
             <option
-               *ngFor="let service of services"
-               [value]="service.name"
-            ></option>
+               *ngFor="let service of services; let i = index"
+               [value]="service._id"
+            >
+               {{ service.name }}
+            </option>
          </select>
          <input
             type="text"
+            ngModel
+            required
             name="company"
             placeholder="Company"
             class="form-item form-item-end"
@@ -65,19 +75,23 @@
          />
          <input
             type="text"
+            ngModel
+            required
             name="budget"
             placeholder="Budget"
             class="form-item"
             autocomplete="off"
          />
          <textarea
+            ngModel
+            required
             name="message"
             placeholder="Enter message here..."
             class="form-item form-item-end col-span-2"
             autocomplete="off"
             rows="5"
          ></textarea>
-         <div class="btn btn--cta col-span-2">Get Quote</div>
+         <button class="btn btn--cta col-span-2">Get Quote</button>
       </form>
    </div>
 </div>

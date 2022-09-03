@@ -11,11 +11,15 @@
                <mat-icon>{{ item.icon }}</mat-icon>
                <span>{{ item.name }}</span>
             </a>
+            <button class="sidenav-item" (click)="logout()">
+               <mat-icon>logout</mat-icon>
+               <span>Logout</span>
+            </button>
          </div>
       </mat-drawer>
 
       <div class="content">
-         <div class="content-header">
+         <div class="content-header fixed w-[85%] top-0">
             <div class="search">
                <mat-icon>search</mat-icon>
                <input type="search" placeholder="Search..." />
@@ -41,7 +45,7 @@
                </div>
             </div>
          </div>
-         <div class="p-10">
+         <div class="p-10 pt-32">
             <router-outlet></router-outlet>
          </div>
       </div>

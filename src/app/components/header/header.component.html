@@ -50,10 +50,12 @@
             </div>
          </button>
          <a class="mr-5" href="/faq">FAQ's</a>
+         <!-- TODO Display admin link if admin logged in -->
+         <!-- <a *ngIf="true" class="mr-5" href="/admin">Admin</a> -->
       </div>
       <div class="inline-flex items-center">
          <button class="btn bg-transparent ml-5" (click)="openRequestModal()">
-            Contact Sales
+            Contact Us
          </button>
          <button class="btn btn--cta ml-5" routerLink="/get-a-quote">
             Get a quote

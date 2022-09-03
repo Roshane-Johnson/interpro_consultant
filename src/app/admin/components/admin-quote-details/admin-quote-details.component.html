@@ -1,0 +1,47 @@
+<!-- <section *ngIf="quote">
+   <h4 class="text-bold">
+      {{ quote.fullName }} {{ quote.status == "active" ? "A" : "UA" }}
+   </h4>
+   <small>{{ quote.email }}</small>
+   <p>{{ quote.message }}</p>
+</section> -->
+
+<div *ngIf="quote" class="flex flex-col w-full bg-white rounded">
+   <div class="flex flex-col w-full">
+      <div class="flex items-center justify-between mb-4">
+         <h1
+            class="inline text-2xl font-bold leading-none tracking-tight text-gray-800"
+         >
+            {{ quote.fullName }}
+            <span class="align-middle ml-2 text-blue-700 text-sm font-semibold">
+               ({{ quote.phoneNumber }})
+            </span>
+         </h1>
+         <mat-icon
+            [ngStyle]="{
+               color:
+                  quote.status == 'active'
+                     ? 'mediumseagreen'
+                     : quote.status == 'inactive'
+                     ? 'red'
+                     : null
+            }"
+            >circle</mat-icon
+         >
+      </div>
+      <div class="font-normal text-gray-800 md:w-3/4">
+         <p class="leading-normal">
+            {{ quote.message }}
+         </p>
+         <div class="flex flex-row items-center mt-4 text-gray-700">
+            <div class="w-1/2">{{ quote.email }}</div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div align="end" mat-dialog-actions>
+   <button color="primary" mat-flat-button mat-dialog-close cdkFocusInitial>
+      OK
+   </button>
+</div>

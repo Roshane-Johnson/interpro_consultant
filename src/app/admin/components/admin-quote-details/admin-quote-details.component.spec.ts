@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminRequestsPageComponent } from './admin-requests-page.component';
+import { AdminQuoteDetailsComponent } from './admin-quote-details.component';
 
-describe('AdminRequestsPageComponent', () => {
-  let component: AdminRequestsPageComponent;
-  let fixture: ComponentFixture<AdminRequestsPageComponent>;
+describe('AdminQuoteDetailsComponent', () => {
+  let component: AdminQuoteDetailsComponent;
+  let fixture: ComponentFixture<AdminQuoteDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminRequestsPageComponent ]
+      declarations: [ AdminQuoteDetailsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminRequestsPageComponent);
+    fixture = TestBed.createComponent(AdminQuoteDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
