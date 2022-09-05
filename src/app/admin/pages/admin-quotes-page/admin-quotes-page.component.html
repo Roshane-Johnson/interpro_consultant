@@ -9,11 +9,17 @@
    </div>
 
    <div>
-      <ng-container *ngIf="quotes.length <= 0">
+      <ng-container *ngIf="quotes.length == 0 && fetchCompleted == false">
          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
          <p class="text-center mt-6">Searching for quote requests...</p>
       </ng-container>
-      <div class="bg-white shadow-md rounded my-6" *ngIf="quotes.length > 0">
+      <div *ngIf="quotes.length == 0 && fetchCompleted == true">
+         <h1>Nothing is here at the moment</h1>
+      </div>
+      <div
+         class="bg-white shadow-md rounded my-6"
+         *ngIf="quotes.length > 0 && fetchCompleted == true"
+      >
          <table class="min-w-max w-full table-auto">
             <thead>
                <tr

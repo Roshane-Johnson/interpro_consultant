@@ -1,18 +1,19 @@
 <section>
    <div class="greeting">
       <div>
-         <h1>Hi, Roshane Johnson</h1>
+         <h1>Hi, Roshane J</h1>
          <p>Welcome back to InterPro's CRM Dashboard</p>
       </div>
    </div>
 
    <div class="stat-cards grid grid-cols-4 gap-x-3">
       <div
+         *ngIf="stats"
          class="card bg-[#639bff] text-white rounded-lg border border-gray-200 p-8"
       >
          <div class="flex justify-between">
-            <span class="font-bold text-xl drop-shadow">
-               {{ stats.requests | number }}
+            <span class="font-bold text-[2rem] drop-shadow">
+               {{ stats.quotes == 0 ? "..." : stats.quotes }}
             </span>
             <mat-icon class="drop-shadow">pending_actions</mat-icon>
          </div>
@@ -20,11 +21,12 @@
       </div>
 
       <div
+         *ngIf="stats"
          class="card bg-[#2dcea8] text-white rounded-lg border border-gray-200 p-8"
       >
          <div class="flex justify-between">
-            <span class="drop-shadow font-bold text-xl">
-               {{ stats.questions | number }}
+            <span class="drop-shadow font-bold text-[2rem] text-xl">
+               {{ stats.questions == 0 ? "..." : stats.questions }}
             </span>
             <mat-icon class="drop-shadow">question_answer</mat-icon>
          </div>
@@ -35,26 +37,60 @@
          class="card bg-[#ff6a7e] text-white rounded-lg border border-gray-200 p-8"
       >
          <div class="flex justify-between">
-            <span class="drop-shadow font-bold text-xl">
-               {{ 33.98 | number }}
+            <span class="drop-shadow font-bold text-[2rem] text-xl">
+               {{ "..." }}
             </span>
             <mat-icon class="drop-shadow">send</mat-icon>
          </div>
-         <p class="drop-shadow text-xs mt-3">WhatsApp messages sent</p>
+         <p class="drop-shadow text-xs mt-3">WhatsApp notifications sent</p>
       </div>
 
       <div
          class="card bg-[#f09755] text-white rounded-lg border border-gray-200 p-8"
       >
          <div class="flex justify-between">
-            <span class="drop-shadow font-bold text-xl">
-               {{ 0.33 | percent }}
+            <span class="drop-shadow font-bold text-[2rem] text-xl">
+               {{ "..." }}
             </span>
             <mat-icon class="drop-shadow">shopping_cart</mat-icon>
          </div>
          <p class="drop-shadow text-xs mt-3">
             Sales performance (previous month)
          </p>
+      </div>
+   </div>
+
+   <div class="grid grid-cols-2 gap-x-4">
+      <div class="overflow-x-auto relative rounded-md mt-5">
+         <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-white uppercase bg-gray-500">
+               <tr>
+                  <th scope="col" class="py-3 px-6">Service</th>
+                  <th scope="col" class="py-3 px-6">Category</th>
+                  <th scope="col" class="py-3 px-6">Quick Link</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let service of services" class="bg-white border-b">
+                  <th
+                     scope="row"
+                     class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
+                  >
+                     {{ service.name }}
+                  </th>
+                  <td class="py-4 px-6">Development Service</td>
+                  <td class="py-4 px-6">
+                     <a
+                        [routerLink]="[service.url]"
+                        target="_blank"
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                     >
+                        Visit Service
+                     </a>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
       </div>
    </div>
 </section>

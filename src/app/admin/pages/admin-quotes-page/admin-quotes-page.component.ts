@@ -13,6 +13,7 @@ import { AdminQuoteDetailsComponent } from '../../components/admin-quote-details
 })
 export class AdminQuotesPageComponent implements OnInit {
    quotes: IQuote[] = [];
+   fetchCompleted: boolean = false;
 
    constructor(private quoteService: QuoteService, private modal: MatDialog) {}
 
@@ -51,7 +52,9 @@ export class AdminQuotesPageComponent implements OnInit {
    getQuotes(): void {
       this.quoteService.getAll().subscribe({
          next: (resp: ApiResponse) => {
+            this.fetchCompleted = false;
             this.quotes = [...this.quotes, ...resp.data];
+            this.fetchCompleted = true;
          },
          error: (err) => console.error(err),
       });

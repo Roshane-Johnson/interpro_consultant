@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable, NgZone } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { IQuote } from '../interfaces/api-quote';
 import { ApiResponse } from '../interfaces/api-response';
@@ -9,7 +9,7 @@ import { ApiResponse } from '../interfaces/api-response';
 export class QuoteService {
    baseUrl = environment.baseUrl + '/quotes/';
 
-   constructor(private http: HttpClient) {}
+   constructor(private http: HttpClient, private ngZone: NgZone) {}
 
    createOne(quote: IQuote) {
       return this.http.post<ApiResponse>(this.baseUrl, quote);
@@ -29,5 +29,14 @@ export class QuoteService {
 
    deleteOne(id: string) {
       return this.http.delete<ApiResponse>(this.baseUrl + id);
+   }
+
+   total() {
+      this.getAll().subscribe({
+         next: (resp: ApiResponse) => {
+            console.log(resp);
+         },
+         error: (error: HttpErrorResponse) => console.dir(error),
+      });
    }
 }
