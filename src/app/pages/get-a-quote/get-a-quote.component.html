@@ -3,10 +3,6 @@
    <div>
       <div class="section__subtitle">Get a Quote</div>
       <h1 class="section__title">Need a Quote on Services?</h1>
-      <!-- <p class="section__content">
-         "When you help others feel important, you help yourself feel important
-         too." – David J. Schwartz, Author and Motivational Speaker
-      </p> -->
       <div class="section__content">
          "Sometimes one can become lost in a big company and lose sight of how
          what one does truly helps or impacts the end customer. If you are one
@@ -22,41 +18,32 @@
    <div class="form-wrap">
       <div class="section__title">Get a Quote</div>
 
-      <form (submit)="requestQuote(quoteForm.value)" #quoteForm="ngForm">
+      <form [formGroup]="quoteForm" (submit)="requestQuote(quoteForm.value)">
          <input
             type="text"
-            ngModel
-            required
+            formControlName="fullName"
             name="fullName"
             placeholder="Full Name"
             class="form-item form-item-end"
             autocomplete="off"
          />
          <input
-            type="text"
-            ngModel
-            required
+            formControlName="email"
+            type="email"
             name="email"
             placeholder="Email Address"
             class="form-item"
             autocomplete="off"
          />
          <input
+            formControlName="phoneNumber"
             type="number"
-            ngModel
             required
             name="phoneNumber"
             placeholder="Phone Number"
             class="form-item form-item-end"
-            autocomplete="off"
          />
-         <select
-            class="form-item"
-            ngModel
-            required
-            name="service"
-            aria-placeholder="Service"
-         >
+         <select class="form-item" name="service" placeholder="Service">
             <option
                *ngFor="let service of services; let i = index"
                [value]="service._id"
@@ -66,26 +53,23 @@
          </select>
          <input
             type="text"
-            ngModel
-            required
             name="company"
             placeholder="Company"
+            formControlName="company"
             class="form-item form-item-end"
             autocomplete="off"
          />
          <input
             type="text"
-            ngModel
-            required
             name="budget"
             placeholder="Budget"
+            formControlName="budget"
             class="form-item"
             autocomplete="off"
          />
          <textarea
-            ngModel
-            required
             name="message"
+            formControlName="message"
             placeholder="Enter message here..."
             class="form-item form-item-end col-span-2"
             autocomplete="off"

@@ -8,17 +8,19 @@
          All of your services in one place: Development, Design, Hosting, &
          more.
       </p>
-      <form #emailForm="ngForm" class="flex flex-col mb-12">
+      <form [formGroup]="formData" class="flex flex-col mb-12">
          <input
             type="text"
             name="email"
-            id="email"
             autocomplete="off"
             placeholder="Enter your email address"
             class="form-item form-item-end--home"
+            formControlName="email"
          />
          <div class="flex mt-8">
             <button
+               [routerLink]="['get-a-quote']"
+               [queryParams]="{ email: form['email'].value }"
                type="submit"
                class="btn--cta-home transition-all capitalize text-center text-white text-sm flex justify-center rounded-md px-8 py-4 mr-3"
             >
@@ -72,6 +74,7 @@
    </div>
    <div class="flex justify-center">
       <div
+         (click)="scrollDown()"
          class="opacity-70 animate-bounce bg-white p-2 w-10 h-10 ring-1 ring-slate-900/5 shadow-lg rounded-full flex items-center justify-center"
       >
          <svg
@@ -89,7 +92,7 @@
    </div>
 </section>
 
-<section id="our-expertise">
+<section #expertiseSection id="our-expertise">
    <h1 class="divider-label uppercase">
       <span>Our Team Has Expertise In</span>
    </h1>

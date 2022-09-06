@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IQuote } from 'src/app/interfaces/api-quote';
-import { ApiResponse } from 'src/app/interfaces/api-response';
+import { IApiResponse } from 'src/app/interfaces/api-response';
 import { QuoteService } from 'src/app/services/quote.service';
 
 @Component({
@@ -19,14 +19,15 @@ export class AdminQuoteDetailsComponent implements OnInit {
 
    getQuote() {
       this.quoteService.getOne(this.id).subscribe({
-         next: (resp: ApiResponse) => {
-            this.quote = resp.data;
+         next: (resp: IApiResponse) => {
+            this.quote = resp.data as IQuote;
          },
          error: (err) => console.error(err),
       });
    }
 
    ngOnInit(): void {
+      console.log(this.id);
       this.getQuote();
    }
 }

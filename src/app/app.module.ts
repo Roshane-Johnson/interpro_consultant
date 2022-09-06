@@ -47,13 +47,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
       LoginComponent,
    ],
    imports: [
-      BrowserModule,
       AppRoutingModule,
-      HttpClientModule,
-      FormsModule,
-      ReactiveFormsModule,
+      BrowserModule,
       BrowserAnimationsModule,
+      FormsModule,
+      HttpClientModule,
       MaterialModule,
+      ReactiveFormsModule,
    ],
    providers: [
       {

@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ApiDevService } from 'src/app/interfaces/api-dev-service';
-import { ApiResponse } from 'src/app/interfaces/api-response';
+import { IApiResponse } from 'src/app/interfaces/api-response';
 import { DevService } from 'src/app/interfaces/dev-service';
 import { DevServiceService } from 'src/app/services/dev-service.service';
 import { QuoteService } from 'src/app/services/quote.service';
@@ -11,7 +11,7 @@ import { QuoteService } from 'src/app/services/quote.service';
    styleUrls: ['./dashboard.component.scss'],
 })
 export class AdminDashboardPage implements OnInit {
-   stats = { quotes: 0, questions: 0 };
+   stats = { quotes: 0, questions: 0, popularService: 'Web Development' };
    services: any[] = [];
    serviceUrls = [
       '/services/website-development',
@@ -27,9 +27,9 @@ export class AdminDashboardPage implements OnInit {
 
    total(): void {
       this.quoteService.getAll().subscribe({
-         next: (resp: ApiResponse) => {
+         next: (resp: IApiResponse) => {
             console.log(resp);
-            this.stats.quotes = resp.data.length;
+            this.stats.quotes = resp.data['length'];
          },
          error: (error: HttpErrorResponse) => console.dir(error),
       });
@@ -37,8 +37,8 @@ export class AdminDashboardPage implements OnInit {
 
    getServices() {
       this.apiDevService.getAll().subscribe({
-         next: (resp: ApiResponse) => {
-            this.services = resp.data;
+         next: (resp: IApiResponse) => {
+            this.services = resp.data as any[];
             this.services.forEach((service: any, index: number) => {
                service.url = this.serviceUrls[index];
             });

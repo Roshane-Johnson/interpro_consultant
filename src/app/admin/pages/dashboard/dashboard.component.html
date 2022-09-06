@@ -12,7 +12,7 @@
          class="card bg-[#639bff] text-white rounded-lg border border-gray-200 p-8"
       >
          <div class="flex justify-between">
-            <span class="font-bold text-[2rem] drop-shadow">
+            <span class="font-bold text-lg drop-shadow">
                {{ stats.quotes == 0 ? "..." : stats.quotes }}
             </span>
             <mat-icon class="drop-shadow">pending_actions</mat-icon>
@@ -25,19 +25,19 @@
          class="card bg-[#2dcea8] text-white rounded-lg border border-gray-200 p-8"
       >
          <div class="flex justify-between">
-            <span class="drop-shadow font-bold text-[2rem] text-xl">
-               {{ stats.questions == 0 ? "..." : stats.questions }}
+            <span class="drop-shadow font-bold text-lg">
+               {{ stats.popularService }}
             </span>
             <mat-icon class="drop-shadow">question_answer</mat-icon>
          </div>
-         <p class="text-xs mt-3 drop-shadow">Total contacts from customers</p>
+         <p class="text-xs mt-3 drop-shadow">Most popular service</p>
       </div>
 
       <div
          class="card bg-[#ff6a7e] text-white rounded-lg border border-gray-200 p-8"
       >
          <div class="flex justify-between">
-            <span class="drop-shadow font-bold text-[2rem] text-xl">
+            <span class="drop-shadow font-bold text-lg">
                {{ "..." }}
             </span>
             <mat-icon class="drop-shadow">send</mat-icon>
@@ -49,7 +49,7 @@
          class="card bg-[#f09755] text-white rounded-lg border border-gray-200 p-8"
       >
          <div class="flex justify-between">
-            <span class="drop-shadow font-bold text-[2rem] text-xl">
+            <span class="drop-shadow font-bold text-lg">
                {{ "..." }}
             </span>
             <mat-icon class="drop-shadow">shopping_cart</mat-icon>

@@ -15,7 +15,7 @@ export class AdminComponent implements OnInit {
       { path: 'dashboard', name: 'Dashboard', icon: 'home' },
       { path: 'quotes', name: 'Quote Requests', icon: 'pending_actions' },
       //TODO Complete contact messages CRUD
-      // { path: 'messages', name: 'Contact Messages', icon: 'question_answer' },
+      { path: 'messages', name: 'Contact Messages', icon: 'question_answer' },
    ];
 
    constructor(private authService: AuthService, private router: Router) {}

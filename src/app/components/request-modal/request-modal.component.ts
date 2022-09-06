@@ -9,7 +9,7 @@ export class RequestModalComponent implements OnInit {
 
    ngOnInit(): void {}
 
-   submitMessage(contactFormData: any): void {
-      console.log(contactFormData);
+   onSubmit(formData: any): void {
+      console.log('Form Data', formData);
    }
 }

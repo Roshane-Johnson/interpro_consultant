@@ -14,6 +14,7 @@ import { AdminQuoteChangeStatusComponent } from './components/admin-quote-change
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 import { AdminGuard } from '../guards/admin.guard';
+import { AdminMessagesPageComponent } from './pages/admin-messages-page/admin-messages-page.component';
 
 @NgModule({
    declarations: [
@@ -24,6 +25,7 @@ import { AdminGuard } from '../guards/admin.guard';
       AdminQuoteDeleteComponent,
       AdminQuoteDetailsComponent,
       AdminQuoteChangeStatusComponent,
+      AdminMessagesPageComponent,
    ],
    imports: [CommonModule, AdminRoutingModule, MaterialModule, FormsModule],
    providers: [

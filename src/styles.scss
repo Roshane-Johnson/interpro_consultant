@@ -126,9 +126,14 @@ body {
    border: 0;
 }
 
-.mat-dialog-container {
-   padding: 40px !important;
-   border-radius: 10px !important;
+.simple-dialog {
+   padding: 0;
+
+   .mat-dialog-container,
+   .mat-dialog-content {
+      overflow: unset;
+      padding: 0;
+   }
 }
 
 .form-item {
