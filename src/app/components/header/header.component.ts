@@ -1,5 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { IApiResponse } from 'src/app/interfaces/api-response';
+import { AuthService } from 'src/app/services/auth.service';
 import { RequestModalComponent } from '../request-modal/request-modal.component';
 
 @Component({
@@ -9,21 +12,13 @@ import { RequestModalComponent } from '../request-modal/request-modal.component'
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
    dropdownOpen = false;
+   isAdmin = false;
 
-   constructor(public dialog: MatDialog) {}
-
-   ngOnInit(): void {}
-
-   ngAfterViewInit(): void {}
+   constructor(private dialog: MatDialog, private authSevice: AuthService) {}
 
    openRequestModal(): void {
-      const dialogRef = this.dialog.open(RequestModalComponent, {
-         width: '50%',
-      });
-      const dialogClosed$ = dialogRef.afterClosed();
-
-      dialogClosed$.subscribe((closed) => {
-         console.log('Request Dialog Closed');
+      this.dialog.open(RequestModalComponent, {
+         width: '30%',
       });
    }
 
@@ -60,4 +55,27 @@ export class HeaderComponent implements OnInit, AfterViewInit {
          }
       }
    }
+
+   getAdmin(): void {
+      this.authSevice.getAuthUser().subscribe({
+         next: (resp: IApiResponse) => {
+            if (
+               resp.success &&
+               resp.data &&
+               resp.data['role']['type'].toLowerCase() === 'admin'
+            )
+               this.isAdmin = true;
+         },
+         error: (error: HttpErrorResponse) => {
+            if (error.status == 401)
+               console.log('Unauthorized: Logging out...');
+         },
+      });
+   }
+
+   ngOnInit(): void {
+      this.getAdmin();
+   }
+
+   ngAfterViewInit(): void {}
 }

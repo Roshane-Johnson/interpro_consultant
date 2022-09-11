@@ -14,8 +14,19 @@ import { AdminQuoteDetailsComponent } from '../../components/admin-quote-details
 export class AdminQuotesPageComponent implements OnInit {
    quotes: IQuote[] = [];
    fetchCompleted: boolean = false;
+   sortBy = 'fullName';
+   reverseMode = false;
 
    constructor(private quoteService: QuoteService, private modal: MatDialog) {}
+   /**
+    * Parses the given quote to a link for "mailto:" usage
+    * @param quote Quote used to make link
+    * @returns string
+    */
+   quickEmailLink(quote: IQuote): string {
+      const subject = quote.email + ' - Quote Reply';
+      return `mailto:${quote.email}?subject=${subject}`;
+   }
 
    /**
     * Opens the modal with all information about an item
@@ -23,8 +34,8 @@ export class AdminQuotesPageComponent implements OnInit {
     */
    openDetailsModal(id: string | undefined): void {
       this.modal.open(AdminQuoteDetailsComponent, {
-         width: '610px',
          data: id,
+         width: '610px',
          panelClass: 'simple-dialog',
       });
    }

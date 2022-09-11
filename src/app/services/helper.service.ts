@@ -24,7 +24,8 @@ export class HelperService {
       Swal.fire({
          icon,
          title,
-         position: 'center',
+         toast: true,
+         position: 'top-end',
          showConfirmButton: false,
          timer: this.secondsToMilliseconds(1.5),
       });

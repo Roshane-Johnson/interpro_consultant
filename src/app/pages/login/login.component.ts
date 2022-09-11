@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
                }, this.helper.secondsToMilliseconds(2));
             } else {
                this.helper.sendNotification('Login Failed!', 'error');
+               this.formData.get('password')?.reset();
             }
          },
          error: (error: any) => console.error(error),

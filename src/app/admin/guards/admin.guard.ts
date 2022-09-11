@@ -14,13 +14,18 @@ import { Observable } from 'rxjs';
 export class AdminGuard implements CanActivate {
    constructor(private router: Router) {}
 
-   canActivate() {
+   canActivate(
+      route: ActivatedRouteSnapshot,
+      state: RouterStateSnapshot
+   ):
+      | Observable<boolean | UrlTree>
+      | Promise<boolean | UrlTree>
+      | boolean
+      | UrlTree {
       if (!!localStorage.getItem('token')) {
          return true;
       } else {
-         this.router.navigate(['admin', 'login']);
+         return this.router.parseUrl('/admin/login');
       }
-
-      return false;
    }
 }

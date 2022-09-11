@@ -1,34 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+   AbstractControl,
+   FormControl,
+   FormGroup,
+   Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ApiDevService } from 'src/app/interfaces/api-dev-service';
 import { IQuote } from 'src/app/interfaces/api-quote';
 import { IApiResponse } from 'src/app/interfaces/api-response';
 import { DevServiceService } from 'src/app/services/dev-service.service';
+import { HelperService } from 'src/app/services/helper.service';
 import { QuoteService } from 'src/app/services/quote.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
    templateUrl: './get-a-quote.component.html',
    styleUrls: ['./get-a-quote.component.scss'],
 })
 export class GetAQuoteComponent implements OnInit {
-   services: ApiDevService[] = [{ name: '-- Select Service --' }];
+   services: ApiDevService[] = [];
 
    constructor(
       private apiDevService: DevServiceService,
       private quoteService: QuoteService,
-      private activatedRoute: ActivatedRoute
+      private activatedRoute: ActivatedRoute,
+      private helper: HelperService
    ) {}
 
    quoteForm = new FormGroup({
-      fullName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required]),
+      fullName: new FormControl('', [
+         Validators.required,
+         Validators.minLength(6),
+      ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phoneNumber: new FormControl(''),
       service: new FormControl('', [Validators.required]),
-      company: new FormControl('', [Validators.required]),
-      budget: new FormControl('', [Validators.required]),
-      message: new FormControl('', [Validators.required]),
+      company: new FormControl(''),
+      budget: new FormControl(''),
+      message: new FormControl(''),
    });
+
+   get form() {
+      return this.quoteForm;
+   }
 
    prefillEmail(): void {
       const queryParams$ = this.activatedRoute.queryParams;
@@ -40,13 +55,29 @@ export class GetAQuoteComponent implements OnInit {
    }
 
    requestQuote(formData: IQuote) {
+      this.quoteForm.disable();
+
       this.quoteService.createOne(formData).subscribe({
          next: (resp: IApiResponse) => {
             if (resp.success === true) {
-               window.location.reload();
+               this.helper.sendNotification(
+                  'Your quote request has been sent!',
+                  'success'
+               );
+
+               setTimeout(() => {
+                  window.location.reload();
+               }, this.helper.secondsToMilliseconds(2));
             }
          },
-         error: (err) => console.error(err),
+         error: (err) => {
+            if (environment.production == false) console.error(err);
+            console.error('Error requesting quote');
+            this.helper.sendNotification(
+               'Something went worng on our end, a refresh might solve this problem',
+               'error'
+            );
+         },
       });
    }
 

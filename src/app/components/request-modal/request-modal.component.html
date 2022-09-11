@@ -5,33 +5,39 @@
       answer any questions you may have so don’t hesitate to send us a message.
       We look forward to hearing from you.
    </small>
-   //TODO Validate and create better design
    <section class="py-10">
       <form
          class="grid gap-y-6"
          #contactForm="ngForm"
-         (submit)="onSubmit(contactForm.value)"
+         (ngSubmit)="onSubmit(contactForm.value)"
       >
-         <input
-            required
-            matInput
-            ngModel
-            #email="ngModel"
-            minlength="10"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            name="email"
-            type="email"
-            class="form-item form-item-end"
-            placeholder="Email Address"
-         />
-         <textarea
-            matInput
-            ngModel
-            #message="ngModel"
-            name="message"
-            placeholder="Enter message here..."
-            class="form-item form-item-end"
-         ></textarea>
+         <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+               required
+               matInput
+               ngModel
+               #email="ngModel"
+               minlength="10"
+               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+               name="email"
+               type="email"
+               class="form-item form-item-end"
+               placeholder="Enter your email address"
+            />
+         </div>
+         <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+               matInput
+               ngModel
+               #message="ngModel"
+               name="message"
+               placeholder="Enter message here..."
+               class="form-item form-item-end"
+               rows="5"
+            ></textarea>
+         </div>
       </form>
    </section>
 </mat-dialog-content>

@@ -45,12 +45,8 @@ export class FaqComponent implements OnInit {
       {
          question: 'Will you maintain my site for me?',
          answer:
-            'We can! We provide on-going support for many of our clients. Check out our WordPress Support Packages.',
+            'We can! We provide on-going support for many of our clients. Ask about our Support Packages.',
       },
-      // {
-      //    question: 'Word',
-      //    answer: 'word',
-      // },
    ];
 
    constructor() {}

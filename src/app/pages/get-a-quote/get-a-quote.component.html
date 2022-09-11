@@ -19,62 +19,141 @@
       <div class="section__title">Get a Quote</div>
 
       <form [formGroup]="quoteForm" (submit)="requestQuote(quoteForm.value)">
-         <input
-            type="text"
-            formControlName="fullName"
-            name="fullName"
-            placeholder="Full Name"
-            class="form-item form-item-end"
-            autocomplete="off"
-         />
-         <input
-            formControlName="email"
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            class="form-item"
-            autocomplete="off"
-         />
-         <input
-            formControlName="phoneNumber"
-            type="number"
-            required
-            name="phoneNumber"
-            placeholder="Phone Number"
-            class="form-item form-item-end"
-         />
-         <select class="form-item" name="service" placeholder="Service">
-            <option
-               *ngFor="let service of services; let i = index"
-               [value]="service._id"
+         <div>
+            <input
+               type="text"
+               formControlName="fullName"
+               name="fullName"
+               placeholder="Full Name"
+               class="form-item form-item-end"
+               autocomplete="off"
+            />
+            <div
+               class="text-sm px-3 py-3"
+               *ngIf="
+                  form.get('fullName') &&
+                  form.get('fullName')?.invalid &&
+                  (form.get('fullName')?.dirty || form.get('fullName')?.touched)
+               "
             >
-               {{ service.name }}
-            </option>
-         </select>
-         <input
-            type="text"
-            name="company"
-            placeholder="Company"
-            formControlName="company"
-            class="form-item form-item-end"
-            autocomplete="off"
-         />
-         <input
-            type="text"
-            name="budget"
-            placeholder="Budget"
-            formControlName="budget"
-            class="form-item"
-            autocomplete="off"
-         />
-         <textarea
-            name="message"
-            formControlName="message"
-            placeholder="Enter message here..."
-            class="form-item form-item-end col-span-2"
-            autocomplete="off"
-            rows="5"
-         ></textarea>
+               <p *ngIf="form.get('fullName')?.errors?.['required']">
+                  Full Name is required.
+               </p>
+            </div>
+         </div>
+         <div>
+            <input
+               formControlName="email"
+               type="email"
+               name="email"
+               placeholder="Email Address"
+               class="form-item"
+               autocomplete="off"
+            />
+            <div
+               class="text-sm px-3 py-3"
+               *ngIf="
+                  form.get('email') &&
+                  form.get('email')?.invalid &&
+                  (form.get('email')?.dirty || form.get('email')?.touched)
+               "
+            >
+               <p *ngIf="form.get('email')?.errors?.['required']">
+                  Email is required.
+               </p>
+            </div>
+         </div>
+         <div>
+            <input
+               formControlName="phoneNumber"
+               type="number"
+               required
+               name="phoneNumber"
+               placeholder="Phone Number"
+               class="form-item form-item-end"
+            />
+         </div>
+         <div>
+            <select
+               formControlName="service"
+               class="form-item"
+               name="service"
+               placeholder="Service"
+            >
+               <option value="" disabled selected>
+                  -- Select A Service --
+               </option>
+               <option *ngFor="let service of services" [value]="service._id">
+                  {{ service.name }}
+               </option>
+            </select>
+            <div
+               class="text-sm px-3 py-3"
+               *ngIf="
+                  form.get('service') &&
+                  form.get('service')?.invalid &&
+                  (form.get('service')?.dirty || form.get('service')?.touched)
+               "
+            >
+               <p *ngIf="form.get('service')?.errors?.['required']">
+                  Service is required.
+               </p>
+            </div>
+         </div>
+         <div>
+            <input
+               type="text"
+               name="company"
+               placeholder="Company"
+               formControlName="company"
+               class="form-item form-item-end"
+               autocomplete="off"
+            />
+         </div>
+         <div>
+            <input
+               type="number"
+               name="budget"
+               placeholder="Budget"
+               formControlName="budget"
+               class="form-item"
+               autocomplete="off"
+            />
+            <div
+               class="text-sm px-3 py-3"
+               *ngIf="
+                  form.get('budget') &&
+                  form.get('budget')?.invalid &&
+                  (form.get('budget')?.dirty || form.get('budget')?.touched)
+               "
+            >
+               <p *ngIf="form.get('budget')?.errors?.['required']">
+                  Budget is required.
+               </p>
+            </div>
+         </div>
+         <div class="col-span-2">
+            <textarea
+               name="message"
+               formControlName="message"
+               placeholder="Enter message here..."
+               class="form-item form-item-end"
+               autocomplete="off"
+               rows="5"
+            ></textarea>
+            <div
+               class="text-sm px-3 py-3"
+               *ngIf="
+                  form.get('message') &&
+                  form.get('message')?.invalid &&
+                  (form.get('message')?.dirty || form.get('message')?.touched)
+               "
+            >
+               <p *ngIf="form.get('message')?.errors?.['required']">
+                  Message is required.
+               </p>
+            </div>
+         </div>
          <button class="btn btn--cta col-span-2">Get Quote</button>
       </form>
    </div>

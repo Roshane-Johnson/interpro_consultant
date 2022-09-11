@@ -1,7 +1,7 @@
 <section>
    <div class="greeting">
       <div>
-         <h1>Hi, Roshane J</h1>
+         <h1>Hi, {{ authUser && authUser.email.split("@")[0] | titlecase }}</h1>
          <p>Welcome back to InterPro's CRM Dashboard</p>
       </div>
    </div>
@@ -38,7 +38,9 @@
       >
          <div class="flex justify-between">
             <span class="drop-shadow font-bold text-lg">
-               {{ "..." }}
+               {{
+                  stats.notificationsSent == 0 ? "..." : stats.notificationsSent
+               }}
             </span>
             <mat-icon class="drop-shadow">send</mat-icon>
          </div>
@@ -50,18 +52,16 @@
       >
          <div class="flex justify-between">
             <span class="drop-shadow font-bold text-lg">
-               {{ "..." }}
+               {{ "Drink water, a lot." }}
             </span>
-            <mat-icon class="drop-shadow">shopping_cart</mat-icon>
+            <mat-icon class="drop-shadow">info</mat-icon>
          </div>
-         <p class="drop-shadow text-xs mt-3">
-            Sales performance (previous month)
-         </p>
+         <p class="drop-shadow text-xs mt-3">Healthy Tech Tip</p>
       </div>
    </div>
 
-   <div class="grid grid-cols-2 gap-x-4">
-      <div class="overflow-x-auto relative rounded-md mt-5">
+   <div class="grid grid-cols-2 gap-4 mt-5">
+      <div class="rounded-md">
          <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-white uppercase bg-gray-500">
                <tr>
@@ -91,6 +91,31 @@
                </tr>
             </tbody>
          </table>
+      </div>
+      <div class="card p-3 bg-white rounded-md">
+         <h6 class="mb-3 font-semibold">Admin Note</h6>
+         <textarea
+            ngModel
+            required
+            [value]="adminNote"
+            #note="ngModel"
+            rows="6"
+            class="w-full h-max form-item"
+            placeholder="Enter admin note here"
+         >
+         </textarea>
+
+         <div class="flex justify-end">
+            <button
+               mat-stroked-button
+               [disabled]="!note.valid"
+               (click)="saveAdminNote(note.value)"
+               color="primary"
+               class="stroked-btn"
+            >
+               Save
+            </button>
+         </div>
       </div>
    </div>
 </section>

@@ -16,16 +16,19 @@ section {
 
    .container {
       height: 100vh;
+      max-width: 100% !important;
       background-color: white;
 
       .sidenav {
-         width: 15vw;
+         // width: 15vw;
          border-color: $dashboard-border;
-         padding-block: 75px;
+         padding-block: 10px;
 
          &-wrap {
-            width: 90%;
+            // width: 90%;
+            padding-inline: 15px;
             margin-inline: auto;
+            margin-block: 10px;
          }
 
          &-item {
@@ -37,6 +40,7 @@ section {
             margin-block-end: 10px;
             border-radius: 0.375rem;
             transition: all 70ms ease;
+            width: 100%;
 
             &:hover,
             &.active {
@@ -65,6 +69,9 @@ section {
             padding: 20px;
             border-bottom: solid 1px $dashboard-border;
             background-color: white;
+            z-index: 10;
+            width: -webkit-fill-available;
+            width: -moz-available;
 
             .search {
                position: relative;
