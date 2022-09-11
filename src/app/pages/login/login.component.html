@@ -8,8 +8,8 @@
       class="absolute w-48 h-48 rounded-xl bg-blue-300 -bottom-6 -right-10 transform rotate-12 hidden md:block"
    ></div>
    <form
-      (submit)="loginHandler(loginForm.value)"
-      #loginForm="ngForm"
+      [formGroup]="formData"
+      (submit)="formData.valid && loginHandler(formData.value)"
       class="py-12 px-12 bg-white rounded-md shadow-xl z-20"
    >
       <div>
@@ -22,24 +22,76 @@
             Sign in and gain access to a powerful admin dashboard
          </p>
       </div>
-      <div class="space-y-4">
-         <input
-            ngModel
-            name="email"
-            type="text"
-            placeholder="Email Address"
-            class="block text-sm py-3 px-4 rounded-md w-full border border-slate-400 outline-none"
-         />
-         <input
-            ngModel
-            name="password"
-            type="password"
-            placeholder="Password"
-            class="block text-sm py-3 px-4 rounded-md w-full border border-slate-400 outline-none"
-         />
+      <div class="grid">
+         <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input
+               formControlName="email"
+               [required]="true"
+               placeholder="Email Address"
+               name="email"
+               type="email"
+               matInput
+            />
+            <mat-error
+               *ngIf="form['email'].errors && form['email'].errors['required']"
+            >
+               Email address is required
+            </mat-error>
+            <mat-error
+               *ngIf="form['email'].errors && form['email'].errors['email']"
+            >
+               Enter a valid email address
+            </mat-error>
+            <mat-error
+               *ngIf="
+                  this.form['email'].errors &&
+                  this.form['email'].errors['minlength']
+               "
+            >
+               Minimun length allowed is
+               {{
+                  this.form["email"].errors &&
+                     this.form["email"].errors["minlength"].requiredLength
+               }}
+            </mat-error>
+         </mat-form-field>
+         <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+               formControlName="password"
+               [required]="true"
+               placeholder="Password"
+               name="password"
+               type="password"
+               matInput
+            />
+            <mat-error
+               *ngIf="
+                  form['password'].errors && form['password'].errors['required']
+               "
+            >
+               Password is required
+            </mat-error>
+            <mat-error
+               *ngIf="
+                  this.form['password'].errors &&
+                  this.form['password'].errors['minlength']
+               "
+            >
+               Minimun length allowed is
+               {{
+                  this.form["password"].errors &&
+                     this.form["password"].errors["minlength"].requiredLength
+               }}
+            </mat-error>
+         </mat-form-field>
       </div>
       <div class="text-center mt-6">
-         <button class="py-3 w-64 text-xl text-white bg-primary rounded-md">
+         <button
+            [disabled]="!formData.valid"
+            class="disabled:bg-primary/70 disabled:cursor-not-allowed py-3 w-64 text-xl text-white bg-primary rounded-md"
+         >
             Login
          </button>
       </div>

@@ -6,91 +6,203 @@
             Requests for a quote customers have made for development services
          </p>
       </div>
+      <!-- TODO Implement Search -->
+      <!-- <form class="w-[500px]">
+         <label
+            for="default-search"
+            class="mb-2 text-sm font-medium text-gray-900 sr-only"
+         >
+            Search
+         </label>
+         <div class="relative">
+            <div
+               class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+            >
+               <svg
+                  aria-hidden="true"
+                  class="w-5 h-5 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+               >
+                  <path
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     stroke-width="2"
+                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+               </svg>
+            </div>
+            <input
+               type="search"
+               id="default-search"
+               class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+               placeholder="Search quote requests..."
+               ngModel
+               [ngModelOptions]="{ standalone: true }"
+               #search="ngModel"
+            />
+            <button
+               type="submit"
+               class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+            >
+               Search
+            </button>
+         </div>
+      </form> -->
    </div>
 
    <div>
-      <ng-container *ngIf="quotes.length <= 0">
+      <ng-container *ngIf="quotes.length == 0 && fetchCompleted == false">
          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
          <p class="text-center mt-6">Searching for quote requests...</p>
       </ng-container>
-      <div class="bg-white shadow-md rounded my-6" *ngIf="quotes.length > 0">
-         <table class="min-w-max w-full table-auto">
-            <thead>
-               <tr
-                  class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
-               >
-                  <th class="py-3 px-6 text-left">Name</th>
-                  <th class="py-3 px-6 text-left">Phone</th>
-                  <th class="py-3 px-6 text-center">Email</th>
-                  <th class="py-3 px-6 text-left">Budget</th>
-                  <th class="py-3 px-6 text-center">Service</th>
-                  <th class="py-3 px-6 text-center">Status</th>
-                  <th class="py-3 px-6 text-center">Actions</th>
+      <div *ngIf="quotes.length == 0 && fetchCompleted == true">
+         <h1>Nothing is here at the moment</h1>
+      </div>
+
+      <div
+         *ngIf="quotes.length > 0 && fetchCompleted == true"
+         class="overflow-x-auto shadow-md sm:rounded-lg"
+      >
+         <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+               <tr>
+                  <th
+                     (click)="reverseMode = !reverseMode; sortBy = 'fullName'"
+                     scope="col"
+                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                  >
+                     Name
+                     <button href="#">
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           class="ml-1 w-3 h-3"
+                           aria-hidden="true"
+                           fill="currentColor"
+                           viewBox="0 0 320 512"
+                        >
+                           <path
+                              d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
+                           />
+                        </svg>
+                     </button>
+                  </th>
+                  <th
+                     (click)="
+                        reverseMode = !reverseMode; sortBy = 'phoneNumber'
+                     "
+                     scope="col"
+                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                  >
+                     Phone
+                     <button href="#">
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           class="ml-1 w-3 h-3"
+                           aria-hidden="true"
+                           fill="currentColor"
+                           viewBox="0 0 320 512"
+                        >
+                           <path
+                              d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
+                           />
+                        </svg>
+                     </button>
+                  </th>
+                  <th
+                     (click)="reverseMode = !reverseMode; sortBy = 'email'"
+                     scope="col"
+                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                  >
+                     Email
+                     <button href="#">
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           class="ml-1 w-3 h-3"
+                           aria-hidden="true"
+                           fill="currentColor"
+                           viewBox="0 0 320 512"
+                        >
+                           <path
+                              d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
+                           />
+                        </svg>
+                     </button>
+                  </th>
+                  <th
+                     (click)="reverseMode = !reverseMode; sortBy = 'budget'"
+                     scope="col"
+                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                  >
+                     Budget
+                     <button href="#">
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           class="ml-1 w-3 h-3"
+                           aria-hidden="true"
+                           fill="currentColor"
+                           viewBox="0 0 320 512"
+                        >
+                           <path
+                              d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
+                           />
+                        </svg>
+                     </button>
+                  </th>
+                  <th
+                     (click)="reverseMode = !reverseMode; sortBy = 'service'"
+                     scope="col"
+                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                  >
+                     Service
+                     <button href="#">
+                        <svg
+                           xmlns="http://www.w3.org/2000/svg"
+                           class="ml-1 w-3 h-3"
+                           aria-hidden="true"
+                           fill="currentColor"
+                           viewBox="0 0 320 512"
+                        >
+                           <path
+                              d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z"
+                           />
+                        </svg>
+                     </button>
+                  </th>
+                  <th scope="col" NJMclass="py-3 pr-6 text-center">Actions</th>
                </tr>
             </thead>
-            <tbody class="text-gray-600 text-sm font-light">
+            <tbody>
                <tr
-                  *ngFor="let quote of quotes; index as i"
-                  class="border-b border-gray-200 hover:bg-gray-100"
+                  class="bg-white border-b"
+                  *ngFor="
+                     let quote of quotes | sort: sortBy:reverseMode;
+                     index as i
+                  "
                >
-                  <td class="py-3 px-6 text-left whitespace-nowrap">
-                     <div class="flex items-center">
-                        <span class="font-medium">{{ quote.fullName }}</span>
-                     </div>
+                  <th
+                     scope="row"
+                     class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
+                  >
+                     {{ quote.fullName }}
+                  </th>
+                  <td class="py-4 px-6">
+                     {{ quote.phoneNumber }}
                   </td>
+                  <td class="py-4 px-6">{{ quote.email }}</td>
+                  <td class="py-4 px-6">{{ quote.budget | currency }}</td>
+                  <td class="py-4 px-6">{{ quote.service.name }}</td>
 
-                  <td class="py-3 px-6 text-left">
-                     <div class="flex items-center">
-                        <span>{{ quote.phoneNumber }}</span>
-                     </div>
-                  </td>
-
-                  <td class="py-3 px-6 text-left">
-                     <div class="flex items-center">
-                        <span>{{ quote.email }}</span>
-                     </div>
-                  </td>
-
-                  <td class="py-3 px-6 text-left">
-                     <div class="flex items-center">
-                        <span>{{ quote.budget | currency: "USD" }}</span>
-                     </div>
-                  </td>
-
-                  <td class="py-3 px-6 text-left">
-                     <div class="flex items-center">
-                        <span>{{ quote.service.name }}</span>
-                     </div>
-                  </td>
-
-                  <td class="py-3 px-6 text-center">
-                     <span
-                        class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs"
-                     >
-                        {{ quote.status }}
-                     </span>
-                  </td>
-
-                  <td class="py-3 px-6 text-center">
+                  <td>
                      <div class="flex item-center justify-center">
-                        <!-- TODO implement status purpose -->
-                        <!-- <div
+                        <a
+                           [href]="quickEmailLink(quote)"
                            class="px-4 flex justify-center items-center w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                         >
-                           <mat-icon
-                              [ngClass]="{
-                                 'text-green-500': quote.status == 'active',
-                                 'text-red-500': quote.status == 'inactive'
-                              }"
-                              (click)="openUpdateModal(quote._id, quote.status)"
-                           >
-                              {{
-                                 quote.status == "active"
-                                    ? "toggle_on"
-                                    : "toggle_off"
-                              }}
-                           </mat-icon>
-                        </div> -->
+                           <mat-icon>quickreply</mat-icon>
+                        </a>
                         <button
                            (click)="openDetailsModal(quote._id)"
                            class="px-4 flex justify-center items-center w-4 mr-2 transform hover:text-purple-500 hover:scale-110"

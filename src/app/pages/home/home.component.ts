@@ -1,17 +1,17 @@
 import { Section } from './../../interfaces/section';
 import { Card } from 'src/app/interfaces/card.type';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TooltipPosition } from '@angular/material/tooltip';
-import { DevService } from 'src/app/interfaces/dev-service';
+import {} from 'src/app/interfaces/dev-service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
    templateUrl: './home.component.html',
    styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-   isOddNumber(num: number) {
-      return num % 2 == 0 ? true : false;
-   }
+   @ViewChild('expertiseSection')
+   ourExpertiseSection!: ElementRef<HTMLDivElement>;
 
    tooltipPosition: TooltipPosition = 'above';
 
@@ -51,6 +51,29 @@ export class HomeComponent implements OnInit {
       color: '#00d900',
       imageUrl: '/assets/man_coding2.jpg',
    };
+
+   formData = new FormGroup({
+      email: new FormControl('', [
+         Validators.required,
+         Validators.minLength(10),
+         Validators.email,
+      ]),
+   });
+
+   get form() {
+      return this.formData.controls;
+   }
+
+   isOddNumber(num: number) {
+      return num % 2 == 0 ? true : false;
+   }
+
+   scrollDown() {
+      this.ourExpertiseSection.nativeElement.scrollIntoView({
+         behavior: 'smooth',
+         block: 'center',
+      });
+   }
 
    constructor() {}
 

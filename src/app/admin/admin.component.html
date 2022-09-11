@@ -2,6 +2,17 @@
    <mat-drawer-container class="container">
       <mat-drawer class="sidenav" mode="side" opened>
          <div class="sidenav-wrap">
+            <div class="pb-10 px-3">
+               <img
+                  id="company-logo"
+                  src="/assets/icons/interpro_logo.svg"
+                  alt="IterPro Logo"
+                  width="30"
+                  class="mb-3"
+               />
+               <span class="text-sm font-bold">InterPro Consultant</span>
+            </div>
+
             <a
                class="sidenav-item"
                [routerLink]="[item.path]"
@@ -19,17 +30,24 @@
       </mat-drawer>
 
       <div class="content">
-         <div class="content-header fixed w-[85%] top-0">
+         <div class="content-header fixed top-0">
             <div class="search">
                <mat-icon>search</mat-icon>
-               <input type="search" placeholder="Search..." />
+               <!-- TODO Create search -->
+               <input
+                  matTooltip="🚧 Search powers are still in testing 🚧"
+                  class="disabled:cursor-not-allowed"
+                  [disabled]="true"
+                  type="search"
+                  placeholder="Search..."
+               />
             </div>
-            <a href="/">Visit Homepage</a>
-            <div>
+            <a href="/" class="text-sm text-primary">Visit Homepage</a>
+            <!-- <div>
                <div class="profile flex">
                   <div class="relative w-10 h-10">
                      <img
-                        class="rounded-full w-full h-full object-cover"
+                        class="rounded-full w-full h-full object-cover bg-primary"
                         src="/assets/man_coding.jpg"
                      />
                   </div>
@@ -38,12 +56,14 @@
                         class="text-sm font-bold"
                         style="color: rgb(43, 43, 43)"
                      >
-                        Roshane Johnson
+                        {{
+                           authUser && authUser.email.split("@")[0] | titlecase
+                        }}
                      </h6>
-                     <small class="text-xs text-slate-500">Admin</small>
+                     <small class="text-xs text-slate-500">Developer</small>
                   </div>
                </div>
-            </div>
+            </div> -->
          </div>
          <div class="p-10 pt-32">
             <router-outlet></router-outlet>

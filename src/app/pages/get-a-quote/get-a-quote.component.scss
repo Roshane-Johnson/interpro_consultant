@@ -67,3 +67,7 @@
       }
    }
 }
+
+.form-item.ng-invalid.ng-touched {
+   @apply border-red-500 outline-red-500 bg-red-100 placeholder:text-red-500 text-red-500;
+}

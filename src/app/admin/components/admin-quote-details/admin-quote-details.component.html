@@ -1,47 +1,26 @@
-<!-- <section *ngIf="quote">
-   <h4 class="text-bold">
-      {{ quote.fullName }} {{ quote.status == "active" ? "A" : "UA" }}
-   </h4>
-   <small>{{ quote.email }}</small>
-   <p>{{ quote.message }}</p>
-</section> -->
-
-<div *ngIf="quote" class="flex flex-col w-full bg-white rounded">
-   <div class="flex flex-col w-full">
-      <div class="flex items-center justify-between mb-4">
-         <h1
-            class="inline text-2xl font-bold leading-none tracking-tight text-gray-800"
-         >
-            {{ quote.fullName }}
-            <span class="align-middle ml-2 text-blue-700 text-sm font-semibold">
-               ({{ quote.phoneNumber }})
-            </span>
-         </h1>
-         <mat-icon
-            [ngStyle]="{
-               color:
-                  quote.status == 'active'
-                     ? 'mediumseagreen'
-                     : quote.status == 'inactive'
-                     ? 'red'
-                     : null
-            }"
-            >circle</mat-icon
-         >
-      </div>
-      <div class="font-normal text-gray-800 md:w-3/4">
-         <p class="leading-normal">
+<div
+   mat-dialog-content
+   *ngIf="quote"
+   class="grid mb-8 rounded-lg overflow-hidden shadow-sm md:mb-12"
+>
+   <figure
+      class="flex flex-col justify-center items-center p-8 text-left bg-white rounded-lg"
+   >
+      <blockquote class="mx-auto mb-4 max-w-2xl text-gray-500 lg:mb-8">
+         <h3 class="text-lg font-semibold text-gray-900">
+            {{ quote.email }}
+         </h3>
+         <p class="my-4 font-light">
             {{ quote.message }}
          </p>
-         <div class="flex flex-row items-center mt-4 text-gray-700">
-            <div class="w-1/2">{{ quote.email }}</div>
+      </blockquote>
+      <figcaption class="flex justify-center items-center">
+         <div class="font-medium text-center">
+            <div>{{ quote.fullName }}</div>
+            <div class="text-sm font-light text-gray-500">
+               {{ quote.phoneNumber }}
+            </div>
          </div>
-      </div>
-   </div>
-</div>
-
-<div align="end" mat-dialog-actions>
-   <button color="primary" mat-flat-button mat-dialog-close cdkFocusInitial>
-      OK
-   </button>
+      </figcaption>
+   </figure>
 </div>

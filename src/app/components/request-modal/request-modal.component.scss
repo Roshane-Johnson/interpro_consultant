@@ -1,5 +1,6 @@
-form {
-   display: grid;
-   grid-template: auto / repeat(2, 1fr);
-   column-gap: 30px;
+.form-group {
+   label {
+      font-size: 14px;
+      padding-left: 5px;
+   }
 }

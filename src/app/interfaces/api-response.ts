@@ -1,5 +1,6 @@
-export interface ApiResponse {
+export interface IApiResponse {
    message?: string;
    status: number;
-   data: any;
+   data: { [key: string]: any };
+   success: boolean;
 }

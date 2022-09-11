@@ -13,7 +13,11 @@ import { AdminQuoteDetailsComponent } from './components/admin-quote-details/adm
 import { AdminQuoteChangeStatusComponent } from './components/admin-quote-change-status/admin-quote-change-status.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
-import { AdminGuard } from '../guards/admin.guard';
+import { AdminMessagesPageComponent } from './pages/admin-messages-page/admin-messages-page.component';
+import { SortPipe } from '../pipes/sort.pipe';
+import { AdminMessageDeleteComponent } from './components/admin-message-delete/admin-message-delete.component';
+import { AdminMessageDetailsComponent } from './components/admin-message-details/admin-message-details.component';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
    declarations: [
@@ -24,6 +28,10 @@ import { AdminGuard } from '../guards/admin.guard';
       AdminQuoteDeleteComponent,
       AdminQuoteDetailsComponent,
       AdminQuoteChangeStatusComponent,
+      AdminMessagesPageComponent,
+      AdminMessageDeleteComponent,
+      AdminMessageDetailsComponent,
+      SortPipe,
    ],
    imports: [CommonModule, AdminRoutingModule, MaterialModule, FormsModule],
    providers: [
