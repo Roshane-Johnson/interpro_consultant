@@ -20,7 +20,7 @@ export class AdminQuoteDeleteComponent implements OnInit {
    getQuote() {
       this.quoteService.getOne(this.id).subscribe({
          next: (resp: IApiResponse) => {
-            this.quote = resp.data as IQuote;
+            if (resp.success) this.quote = resp.data as IQuote;
          },
          error: (err) => console.error(err),
       });
@@ -29,7 +29,7 @@ export class AdminQuoteDeleteComponent implements OnInit {
    deleteOne() {
       this.quoteService.deleteOne(this.id).subscribe({
          next: (resp: IApiResponse) => {
-            if (resp.message?.includes('success')) {
+            if (resp.success) {
                window.location.reload();
             }
          },

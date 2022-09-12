@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IApiResponse } from '../interfaces/api-response';
 import { IUser } from '../interfaces/user';
@@ -25,26 +25,39 @@ export class AuthService {
    }
 
    autoLogout() {
-      this.getAuthUser().subscribe({
+      const token = localStorage.getItem('token');
+      const tokenInfo$ = this.getTokenInfo();
+
+      if (token == null) return console.log('not logged in');
+
+      tokenInfo$.subscribe({
          next: (resp: IApiResponse) => {
-            if (resp.status == 401) {
-               this.logout();
-            }
+            if (resp.success == false)
+               throw new Error('Error accessing token info');
+
+            const now = Date.now();
+            const tokenExpiryDate = resp.data['exp'];
+
+            console.log(Date.parse(token.toString()));
          },
-         error: (errorResp) => {
-            if (errorResp.status == 401) {
-               this.logout();
-            }
+         error: (error: HttpErrorResponse) => {
+            console.log(error);
          },
       });
    }
 
-   getAuthUser() {
-      return this.http.get<IApiResponse>(this.baseUrl + '/user');
+   getTokenInfo(): Observable<IApiResponse> {
+      return this.http.get<IApiResponse>(this.baseUrl + '/token').pipe(take(1));
    }
 
-   register(user: Omit<IUser, '_id'>) {
-      return this.http.post(this.baseUrl + '/register', user);
+   getAuthUser() {
+      return this.http.get<IApiResponse>(this.baseUrl + '/user').pipe(take(1));
+   }
+
+   register(user: Omit<IUser, '_id'>): Observable<IApiResponse> {
+      return this.http
+         .post<IApiResponse>(this.baseUrl + '/register', user)
+         .pipe(take(1));
    }
 
    login(user: Pick<IUser, 'email' | 'password'>): Observable<IApiResponse> {
@@ -56,7 +69,8 @@ export class AuthService {
                return console.error(resp.message);
             }
          }),
-         catchError((error) => of(error))
+         catchError((error) => of(error)),
+         take(1)
       );
    }
 

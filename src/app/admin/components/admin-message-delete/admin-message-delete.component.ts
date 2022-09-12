@@ -32,7 +32,7 @@ export class AdminMessageDeleteComponent implements OnInit {
       this.messageService.deleteOne(this.id).subscribe({
          next: (resp: IApiResponse) => {
             if (resp.success) {
-               this.router.navigateByUrl('');
+               location.reload()
             }
          },
          error: (err) => console.error(err),

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RequestModalComponent } from './request-modal.component';
+import { ContactUsModalComponent } from './contact-us-modal.component';
 
 describe('RequestModalComponent', () => {
-  let component: RequestModalComponent;
-  let fixture: ComponentFixture<RequestModalComponent>;
+  let component: ContactUsModalComponent;
+  let fixture: ComponentFixture<ContactUsModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RequestModalComponent ]
+      declarations: [ ContactUsModalComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RequestModalComponent);
+    fixture = TestBed.createComponent(ContactUsModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

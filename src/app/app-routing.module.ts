@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SiteMapComponent } from './components/site-map/site-map.component';
 import { ApiDevComponent } from './pages/api-dev/api-dev.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { GetAQuoteComponent } from './pages/get-a-quote/get-a-quote.component';
@@ -16,7 +15,6 @@ const routes: Routes = [
    },
    { path: 'faq', component: FaqComponent },
    { path: 'get-a-quote', component: GetAQuoteComponent },
-   { path: 'map', component: SiteMapComponent },
    {
       path: 'services',
       children: [
@@ -34,7 +32,7 @@ const routes: Routes = [
       loadChildren: () =>
          import('./admin/admin.module').then((m) => m.AdminModule),
    },
-   // { path: '**', pathMatch: 'full' },
+   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 
 @NgModule({

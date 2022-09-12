@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { IMessage } from 'src/app/interfaces/api-message';
 import { IApiResponse } from 'src/app/interfaces/api-response';
 import { HelperService } from 'src/app/services/helper.service';
 import { MessageService } from 'src/app/services/messages.service';
 
 @Component({
-   templateUrl: './request-modal.component.html',
-   styleUrls: ['./request-modal.component.scss'],
+   templateUrl: './contact-us-modal.component.html',
+   styleUrls: ['./contact-us-modal.component.scss'],
 })
-export class RequestModalComponent implements OnInit {
+export class ContactUsModalComponent implements OnInit {
    constructor(
       private messageService: MessageService,
       private helper: HelperService
    ) {}
+
+   field = new FormControl('');
 
    ngOnInit(): void {}
 

@@ -7,7 +7,7 @@ import { MaterialModule } from 'src/app/modules/material.module';
 import { AdminDashboardPage } from './pages/dashboard/dashboard.component';
 import { AdminNotFoundPage } from './pages/not-found/not-found.component';
 import { AdminQuotesPageComponent } from './pages/admin-quotes-page/admin-quotes-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminQuoteDeleteComponent } from './components/admin-quote-delete/admin-quote-delete.component';
 import { AdminQuoteDetailsComponent } from './components/admin-quote-details/admin-quote-details.component';
 import { AdminQuoteChangeStatusComponent } from './components/admin-quote-change-status/admin-quote-change-status.component';
@@ -33,7 +33,7 @@ import { AdminGuard } from './guards/admin.guard';
       AdminMessageDetailsComponent,
       SortPipe,
    ],
-   imports: [CommonModule, AdminRoutingModule, MaterialModule, FormsModule],
+   imports: [CommonModule, AdminRoutingModule, MaterialModule, ReactiveFormsModule, FormsModule],
    providers: [
       AdminGuard,
       {

@@ -1,0 +1,91 @@
+<h2 mat-dialog-title>Always feel free to get in touch with us</h2>
+<mat-dialog-content>
+   <small>
+      Need to get in touch with our team? We’re all ears. We’re here to help and
+      answer any questions you may have so don’t hesitate to send us a message.
+      We look forward to hearing from you.
+   </small>
+   <section class="py-10">
+      <form
+         class="grid grid-cols-1"
+         #contactForm="ngForm"
+         (ngSubmit)="onSubmit(contactForm.value)"
+      >
+         <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+               required
+               matInput
+               ngModel
+               #email="ngModel"
+               name="email"
+               placeholder="Enter email address here"
+            />
+
+            <ng-template>
+               <!-- Email Validations -->
+            </ng-template>
+            <mat-error *ngIf="email.errors && email.errors['required']">
+               Email address is required
+            </mat-error>
+            <mat-error *ngIf="email.errors && email.errors['email']">
+               Enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.errors && email.errors['minlength']">
+               Minimun length allowed is
+               {{ email.errors && email.errors["minlength"].requiredLength }}
+            </mat-error>
+            <mat-error *ngIf="email.errors && email.errors['minlength']">
+               Maximum length allowed is
+               {{ email.errors && email.errors["maxlength"].requiredLength }}
+            </mat-error>
+         </mat-form-field>
+
+         <mat-form-field appearance="outline">
+            <mat-label>Message</mat-label>
+            <textarea
+               required
+               matInput
+               ngModel
+               #message="ngModel"
+               name="message"
+               placeholder="Enter message here"
+            ></textarea>
+            <ng-template>
+               <!-- Message Validations -->
+            </ng-template>
+            <mat-hint>
+               Enter a message you'd like send to our sales team
+            </mat-hint>
+            <mat-error *ngIf="message.errors && message.errors['required']">
+               Message is required
+            </mat-error>
+            <mat-error *ngIf="message.errors && message.errors['minlength']">
+               Minimun length allowed is
+               {{
+                  message.errors && message.errors["minlength"].requiredLength
+               }}
+            </mat-error>
+            <mat-error *ngIf="message.errors && message.errors['minlength']">
+               Maximum length allowed is
+               {{
+                  message.errors && message.errors["maxlength"].requiredLength
+               }}
+            </mat-error>
+         </mat-form-field>
+      </form>
+   </section>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+   <button mat-button mat-dialog-close>Cancel</button>
+   <button
+      mat-raised-button
+      (click)="contactForm.ngSubmit.emit()"
+      [disabled]="!contactForm.valid"
+      [mat-dialog-close]="true"
+      type="submit"
+      color="primary"
+   >
+      Contact Us
+   </button>
+</mat-dialog-actions>
