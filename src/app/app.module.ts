@@ -21,7 +21,7 @@ import { ApiDevComponent } from './pages/api-dev/api-dev.component';
 import { ServiceExpenseCardComponent } from './components/service-expense-card/service-expense-card.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { SiteMapComponent } from './components/site-map/site-map.component';
-import { RequestModalComponent } from './components/request-modal/request-modal.component';
+import { ContactUsModalComponent } from './components/contact-us-modal/contact-us-modal.component';
 import { GetAQuoteComponent } from './pages/get-a-quote/get-a-quote.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -42,7 +42,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
       ServiceExpenseCardComponent,
       FaqComponent,
       SiteMapComponent,
-      RequestModalComponent,
+      ContactUsModalComponent,
       GetAQuoteComponent,
       LoginComponent,
    ],
@@ -51,9 +51,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
       BrowserModule,
       BrowserAnimationsModule,
       FormsModule,
+      ReactiveFormsModule,
       HttpClientModule,
       MaterialModule,
-      ReactiveFormsModule,
    ],
    providers: [
       {

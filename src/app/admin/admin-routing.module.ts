@@ -27,10 +27,6 @@ const routes: Routes = [
             path: 'messages',
             component: AdminMessagesPageComponent,
          },
-         {
-            path: '**',
-            redirectTo: 'not-found',
-         },
       ],
    },
    { path: 'login', component: LoginComponent },

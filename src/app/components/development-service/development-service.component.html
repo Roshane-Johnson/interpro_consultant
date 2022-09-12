@@ -5,11 +5,13 @@
          *ngFor="let plan of plans; let $i = index"
          [label]="plan"
       >
-         <p class="serivice__content">
-            <app-service-expense-card
-               [priceTable]="priceTables[$i]"
-            ></app-service-expense-card>
-         </p>
+         <div class="serivice__content">
+            <ng-template matTabContent>
+               <app-service-expense-card
+                  [priceTable]="priceTables[$i]"
+               ></app-service-expense-card>
+            </ng-template>
+         </div>
       </mat-tab>
    </mat-tab-group>
 </section>
