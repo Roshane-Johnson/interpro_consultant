@@ -6,6 +6,7 @@ import { DevServiceService } from 'src/app/services/dev-service.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { MessageLogService } from 'src/app/services/message-log.service';
 import { QuoteService } from 'src/app/services/quote.service';
+import { environment } from 'src/environments/environment';
 import { AdminNoteService } from '../../services/admin-note.service';
 
 @Component({
@@ -41,7 +42,7 @@ export class AdminDashboardPage implements OnInit {
    getTotals(): void {
       this.quoteService.getAll().subscribe({
          next: (resp: IApiResponse) => {
-            this.stats.quotes = resp.data['length'];
+            this.stats.quotes = resp.data && resp.data['length'];
          },
          error: (error: HttpErrorResponse) => console.dir(error),
       });
@@ -95,7 +96,7 @@ export class AdminDashboardPage implements OnInit {
             if (resp.success) this.authUser = resp.data;
          },
          error: (error: HttpErrorResponse) => {
-            console.log(error);
+            if (environment.production == false) console.error(error);
          },
       });
    }

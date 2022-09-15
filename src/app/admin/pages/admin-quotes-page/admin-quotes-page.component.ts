@@ -68,8 +68,11 @@ export class AdminQuotesPageComponent implements OnInit {
       this.quoteService.getAll().subscribe({
          next: (resp: IApiResponse) => {
             this.fetchCompleted = false;
-            this.quotes = [...this.quotes, ...(resp.data as IQuote[])];
-            this.fetchCompleted = true;
+
+            if (resp.data) {
+               this.quotes = [...this.quotes, ...(resp.data as IQuote[])];
+               this.fetchCompleted = true;
+            }
          },
          error: (err) => console.error(err),
       });
