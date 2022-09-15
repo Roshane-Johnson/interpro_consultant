@@ -26,7 +26,9 @@ export class MessageService {
    }
 
    updateOne(id: string, message: IMessage) {
-      return this.http.patch<IApiResponse>(this.apiUrl + id, message).pipe(take(1));
+      return this.http
+         .patch<IApiResponse>(this.apiUrl + id, message)
+         .pipe(take(1));
    }
 
    deleteOne(id: string) {
@@ -36,7 +38,7 @@ export class MessageService {
    total() {
       this.getAll().subscribe({
          next: (resp: IApiResponse) => {
-            console.log(resp);
+            // console.log(resp);
          },
          error: (error: HttpErrorResponse) => console.dir(error),
       });

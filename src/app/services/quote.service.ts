@@ -46,7 +46,7 @@ export class QuoteService {
    total() {
       this.getAll().subscribe({
          next: (resp: IApiResponse) => {
-            console.log(resp);
+            // console.log(resp);
          },
          error: (error: HttpErrorResponse) => console.dir(error),
       });

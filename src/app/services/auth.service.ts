@@ -19,8 +19,8 @@ export class AuthService {
       try {
          localStorage.setItem('token', token);
       } catch (error) {
-         if (environment.production) console.log('Error logging in out');
-         else console.log('Error setting token in local storage', error);
+         if (environment.production) console.error('Error logging in out');
+         else console.error('Error setting token in local storage', error);
       }
    }
 
@@ -47,12 +47,9 @@ export class AuthService {
 
             if (!tokenExpiryDate) this.logout();
             if (now > tokenExpiryDate) return this.logout();
-
-            console.log('Now:', new Date(now));
-            console.log('Token Expiry Date:', new Date(tokenExpiryDate));
          },
          error: (error: HttpErrorResponse) => {
-            console.log(error);
+            if (environment.production == false) console.error(error);
          },
       });
    }
@@ -106,8 +103,8 @@ export class AuthService {
          localStorage.removeItem('token');
          this.router.navigate(['/']);
       } catch (error) {
-         if (environment.production) console.log('Error logging out');
-         else console.log('Error removing token from local storage', error);
+         if (environment.production) console.error('Error logging out');
+         else console.error('Error removing token from local storage', error);
       }
    }
 }
