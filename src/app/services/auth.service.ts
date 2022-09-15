@@ -28,7 +28,7 @@ export class AuthService {
       const token = localStorage.getItem('token');
       const tokenInfo$ = this.getTokenInfo();
 
-      if (token == null) return console.log('not logged in');
+      if (token == null) return;
 
       tokenInfo$.subscribe({
          next: (resp: IApiResponse) => {
