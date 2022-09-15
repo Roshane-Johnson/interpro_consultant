@@ -27,7 +27,6 @@ export class AdminQuoteDetailsComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      console.log(this.id);
       this.getQuote();
    }
 }

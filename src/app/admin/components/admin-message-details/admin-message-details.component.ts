@@ -27,7 +27,6 @@ export class AdminMessageDetailsComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      console.log(this.id);
       this.getMessage();
    }
 }

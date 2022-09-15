@@ -19,8 +19,8 @@ export class AuthService {
       try {
          localStorage.setItem('token', token);
       } catch (error) {
-         if (environment.production) console.log('Error logging in out');
-         else console.log('Error setting token in local storage', error);
+         if (environment.production) console.error('Error logging in out');
+         else console.error('Error setting token in local storage', error);
       }
    }
 
@@ -28,7 +28,7 @@ export class AuthService {
       const token = localStorage.getItem('token');
       const tokenInfo$ = this.getTokenInfo();
 
-      if (token == null) return console.log('not logged in');
+      if (token == null) return;
 
       tokenInfo$.subscribe({
          next: (resp: IApiResponse) => {
@@ -36,12 +36,20 @@ export class AuthService {
                throw new Error('Error accessing token info');
 
             const now = Date.now();
-            const tokenExpiryDate = resp.data['exp'];
 
-            console.log(Date.parse(token.toString()));
+            /**
+             * JWT parses time in an strange format so it has to be multiplied by a thousand
+             * for it to show the correct time relative to the local system time.
+             *
+             * Read More: https://stackoverflow.com/questions/51292406
+             */
+            const tokenExpiryDate = resp.data['exp'] && resp.data['exp'] * 1000;
+
+            if (!tokenExpiryDate) this.logout();
+            if (now > tokenExpiryDate) return this.logout();
          },
          error: (error: HttpErrorResponse) => {
-            console.log(error);
+            if (environment.production == false) console.error(error);
          },
       });
    }
@@ -54,12 +62,24 @@ export class AuthService {
       return this.http.get<IApiResponse>(this.baseUrl + '/user').pipe(take(1));
    }
 
+   /**
+    * Register/Create a user with provided credentials
+    * @param user email and password of user being logged in.
+    * @example { email: 'xyz@mail.com', password: 'p@$$w0rd' }
+    * @returns Observable<IApiResponse>
+    */
    register(user: Omit<IUser, '_id'>): Observable<IApiResponse> {
       return this.http
          .post<IApiResponse>(this.baseUrl + '/register', user)
          .pipe(take(1));
    }
 
+   /**
+    * Login in a user with valid credentials
+    * @param user email and password of user being logged in.
+    * @example { email: 'xyz@mail.com', password: 'p@$$w0rd' }
+    * @returns Observable<IApiResponse>
+    */
    login(user: Pick<IUser, 'email' | 'password'>): Observable<IApiResponse> {
       return this.http.post<IApiResponse>(this.baseUrl + '/login', user).pipe(
          tap((resp: IApiResponse) => {
@@ -74,12 +94,17 @@ export class AuthService {
       );
    }
 
+   /**
+    * Logs out the authenticated user.
+    * Note: It automatically redirects to the base url
+    */
    logout(): void {
       try {
          localStorage.removeItem('token');
+         this.router.navigate(['/']);
       } catch (error) {
-         if (environment.production) console.log('Error logging out');
-         else console.log('Error removing token from local storage', error);
+         if (environment.production) console.error('Error logging out');
+         else console.error('Error removing token from local storage', error);
       }
    }
 }

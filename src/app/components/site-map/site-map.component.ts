@@ -11,7 +11,6 @@ export class SiteMapComponent implements OnInit {
    ngOnInit() {
       this._router.config.forEach((i) => {
          this.getPaths(i);
-         console.log(this.urls);
       });
    }
 

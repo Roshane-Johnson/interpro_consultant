@@ -25,8 +25,6 @@ export class AdminQuoteChangeStatusComponent implements OnInit {
             if (resp.status == 200) {
                return window.location.reload();
             }
-
-            console.log(resp);
          },
          error: (err) => console.error(err),
       });
