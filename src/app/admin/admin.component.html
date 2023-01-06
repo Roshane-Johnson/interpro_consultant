@@ -31,31 +31,9 @@
 
       <div class="content">
          <div class="content-header fixed top-0">
-            <form class="example-form">
-               <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Assignee</mat-label>
-                  <input
-                     type="text"
-                     matInput
-                     [formControl]="myControl"
-                     [matAutocomplete]="auto"
-                  />
-                  <mat-autocomplete
-                     #auto="matAutocomplete"
-                     [displayWith]="displayFn"
-                  >
-                     <mat-option
-                        *ngFor="let option of filteredOptions | async"
-                        [value]="option"
-                     >
-                        {{ option.fullName }}
-                     </mat-option>
-                  </mat-autocomplete>
-               </mat-form-field>
-            </form>
-
-            <!-- <div class="search">
+            <div class="search">
                <mat-icon>search</mat-icon>
+               <!-- TODO Create search -->
                <input
                   matTooltip="🚧 Search powers are still in testing 🚧"
                   class="disabled:cursor-not-allowed"
@@ -63,7 +41,7 @@
                   type="search"
                   placeholder="Search..."
                />
-            </div> -->
+            </div>
             <a href="/" class="text-sm text-primary">Visit Homepage</a>
             <!-- <div>
                <div class="profile flex">
