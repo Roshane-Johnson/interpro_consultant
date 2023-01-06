@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IQuote } from 'src/app/interfaces/api-quote';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { QuoteService } from 'src/app/services/quote.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class AdminQuoteChangeStatusComponent implements OnInit {
       this.quote.status =
          this.data.status == 'inactive' ? 'active' : 'inactive';
       this.quoteService.updateOne(this.data.id, this.quote).subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (resp.status == 200) {
                return window.location.reload();
             }
@@ -32,7 +32,7 @@ export class AdminQuoteChangeStatusComponent implements OnInit {
 
    getQuote(): void {
       this.quoteService.getOne(this.data.id).subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             this.quote = resp.data as IQuote;
          },
          error: (err) => console.error(err),

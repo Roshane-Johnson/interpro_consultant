@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { IUser } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { HelperService } from 'src/app/services/helper.service';
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
    loginHandler(user: Pick<IUser, 'email' | 'password'>) {
       this.authService.login(user).subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (resp.success === true) {
                this.helper.sendNotification('Login Successful', 'success');
 

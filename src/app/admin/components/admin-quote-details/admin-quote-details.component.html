@@ -1,26 +1,63 @@
-<div
-   mat-dialog-content
-   *ngIf="quote"
-   class="grid mb-8 rounded-lg overflow-hidden shadow-sm md:mb-12"
->
-   <figure
-      class="flex flex-col justify-center items-center p-8 text-left bg-white rounded-lg"
-   >
-      <blockquote class="mx-auto mb-4 max-w-2xl text-gray-500 lg:mb-8">
-         <h3 class="text-lg font-semibold text-gray-900">
-            {{ quote.email }}
-         </h3>
-         <p class="my-4 font-light">
+<div class="relative p-4">
+   <div class="p-3 bg-gray-800 text-gray-100 mb-4 rounded-md flex">
+      <mat-icon class="mr-3" (click)="closeModal()">home</mat-icon>
+      <h5 class="font-bold inline-block">Quote Details</h5>
+   </div>
+   <div class="detail-row mx-auto w-[95%]">
+      <div class="grid gap-12 row-gap-3 md:grid-cols-2">
+         <div>
+            <h6 class="mb-2 font-semibold leading-5">Full Name</h6>
+            <p class="text-sm text-gray-900">
+               {{ quote.fullName }}
+            </p>
+         </div>
+         <div>
+            <h6 class="mb-2 font-semibold leading-5">Email</h6>
+            <p class="text-sm text-gray-900">
+               {{ quote.email }}
+            </p>
+         </div>
+         <div>
+            <h6 class="mb-2 font-semibold leading-5">Budget</h6>
+            <p class="text-sm text-gray-900">
+               {{ quote.budget | currency }}
+            </p>
+         </div>
+         <div>
+            <h6 class="mb-2 font-semibold leading-5">Phone Number</h6>
+            <p class="text-sm text-gray-900">
+               {{ quote.phoneNumber }}
+            </p>
+         </div>
+      </div>
+      <div class="!mb-2">
+         <h6 class="mb-2 font-semibold leading-5">Message</h6>
+         <p class="text-sm text-gray-900">
             {{ quote.message }}
          </p>
-      </blockquote>
-      <figcaption class="flex justify-center items-center">
-         <div class="font-medium text-center">
-            <div>{{ quote.fullName }}</div>
-            <div class="text-sm font-light text-gray-500">
-               {{ quote.phoneNumber }}
-            </div>
+      </div>
+      <hr class="my-4" />
+      <div class="flex justify-between !mb-0">
+         <div>
+            <h6
+               class="text-slate-800 text-sm mb-2 font-semibold leading-5 inline-block"
+            >
+               Created -
+            </h6>
+            <p class="text-sm text-gray-900 inline">
+               {{ quote.createdAt | date : "medium" }}
+            </p>
          </div>
-      </figcaption>
-   </figure>
+         <div>
+            <h6
+               class="text-slate-800 text-sm mb-2 font-semibold leading-5 inline-block"
+            >
+               Updated -
+            </h6>
+            <p class="text-sm text-gray-900 inline">
+               {{ quote.updatedAt | date : "medium" }}
+            </p>
+         </div>
+      </div>
+   </div>
 </div>

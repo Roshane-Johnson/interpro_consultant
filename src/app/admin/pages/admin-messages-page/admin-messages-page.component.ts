@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IMessage } from 'src/app/interfaces/api-message';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { MessageService } from 'src/app/services/messages.service';
 import { AdminMessageDeleteComponent } from '../../components/admin-message-delete/admin-message-delete.component';
 import { AdminMessageDetailsComponent } from '../../components/admin-message-details/admin-message-details.component';
@@ -43,7 +43,7 @@ export class AdminMessagesPageComponent implements OnInit {
     */
    getMessages(): void {
       this.message.getAll().subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             this.fetchCompleted = false;
             this.messages = [...this.messages, ...(resp.data as IMessage[])];
             this.fetchCompleted = true;

@@ -9,7 +9,7 @@ import {
    ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { AuthService } from 'src/app/services/auth.service';
 import { ContactUsModalComponent } from '../contact-us-modal/contact-us-modal.component';
 
@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
    @ViewChild('navbar') navbar!: ElementRef<HTMLElement>;
 
+   //handle the global scroll event
    @HostListener('window:scroll', ['$event']) onWindowScroll(event: any) {
       const scrolledClass = 'navbar--scrolled';
       const placeholderElement = document.createElement('div');
@@ -61,7 +62,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
    getAdmin(): void {
       this.authSevice.getAuthUser().subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (
                resp.success &&
                resp.data &&

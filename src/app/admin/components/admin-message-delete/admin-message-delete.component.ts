@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { IMessage } from 'src/app/interfaces/api-message';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { MessageService } from 'src/app/services/messages.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class AdminMessageDeleteComponent implements OnInit {
 
    getMessage() {
       this.messageService.getOne(this.id).subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             this.message = resp.data as IMessage;
          },
          error: (err) => console.error(err),
@@ -30,9 +30,9 @@ export class AdminMessageDeleteComponent implements OnInit {
 
    deleteOne() {
       this.messageService.deleteOne(this.id).subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (resp.success) {
-               location.reload()
+               location.reload();
             }
          },
          error: (err) => console.error(err),

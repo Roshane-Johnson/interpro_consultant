@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { IQuote } from 'src/app/interfaces/api-quote';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
+import { HelperService } from 'src/app/services/helper.service';
 import { QuoteService } from 'src/app/services/quote.service';
 import { AdminQuoteChangeStatusComponent } from '../../components/admin-quote-change-status/admin-quote-change-status.component';
 import { AdminQuoteDeleteComponent } from '../../components/admin-quote-delete/admin-quote-delete.component';
@@ -16,8 +18,13 @@ export class AdminQuotesPageComponent implements OnInit {
    fetchCompleted: boolean = false;
    sortBy = 'fullName';
    reverseMode = false;
+   quotes$: Subscription = <Subscription>{};
 
-   constructor(private quoteService: QuoteService, private modal: MatDialog) {}
+   constructor(
+      private quoteService: QuoteService,
+      private helper: HelperService,
+      private modal: MatDialog
+   ) {}
    /**
     * Parses the given quote to a link for "mailto:" usage
     * @param quote Quote used to make link
@@ -66,7 +73,7 @@ export class AdminQuotesPageComponent implements OnInit {
     */
    getQuotes(): void {
       this.quoteService.getAll().subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             this.fetchCompleted = false;
 
             if (resp.data) {
@@ -78,7 +85,31 @@ export class AdminQuotesPageComponent implements OnInit {
       });
    }
 
+   priorityChangeHandler(id: string, priority: string): void {
+      this.quotes$ = this.quoteService
+         .updateOne(id, { priority: priority } as IQuote)
+         .subscribe({
+            next: (resp: ApiResponse) => {
+               console.log(resp);
+               if (resp.success) {
+                  // update old array with new data
+                  const quoteIndex = this.quotes.findIndex(
+                     (quote) => quote._id == id
+                  );
+
+                  this.quotes[quoteIndex].priority = priority;
+                  this.helper.sendNotification('Priority Updated', 'success');
+               }
+            },
+            error: (error) => {
+               console.log(error);
+            },
+         });
+   }
+
    ngOnInit(): void {
       this.getQuotes();
    }
+
+   ngOnDestroy(): void {}
 }

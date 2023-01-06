@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IApiResponse } from '../interfaces/api-response';
+import { map, Observable, startWith } from 'rxjs';
+import { IQuote } from '../interfaces/api-quote';
+import { ApiResponse } from '../interfaces/api-response';
 import { AuthService } from '../services/auth.service';
 import { HelperService } from '../services/helper.service';
 import { AdminRoute } from './interfaces/admin-route';
@@ -11,6 +14,26 @@ import { AdminRoute } from './interfaces/admin-route';
    styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+   myControl = new FormControl();
+   options: IQuote[] = [];
+
+   filteredOptions: Observable<IQuote[]> = <Observable<IQuote[]>>{};
+   //
+
+   displayFn(quote: IQuote): string {
+      return quote && quote.fullName ? quote.fullName : '';
+   }
+
+   private _filter(fullName: string): IQuote[] {
+      const filterValue = fullName.toLowerCase();
+
+      return this.options.filter((option) =>
+         option.fullName.toLowerCase().includes(filterValue)
+      );
+   }
+
+   //
+
    showFiller = false;
    authUser!: any;
 
@@ -27,7 +50,7 @@ export class AdminComponent implements OnInit {
    ) {}
 
    getAdmin() {
-      this.authService.getAuthUser().subscribe((resp: IApiResponse) => {
+      this.authService.getAuthUser().subscribe((resp: ApiResponse) => {
          if (resp.success) this.authUser = resp.data;
          if (resp.success == false)
             this.helper.sendNotification('Error getting admin', 'error');
@@ -41,5 +64,11 @@ export class AdminComponent implements OnInit {
 
    ngOnInit(): void {
       this.getAdmin();
+
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+         startWith(''),
+         map((value) => (typeof value === 'string' ? value : value.fullName)),
+         map((name) => (name ? this._filter(name) : this.options.slice()))
+      );
    }
 }

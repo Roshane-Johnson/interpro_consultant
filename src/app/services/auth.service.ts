@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, of, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IApiResponse } from '../interfaces/api-response';
+import { ApiResponse } from '../interfaces/api-response';
 import { IUser } from '../interfaces/user';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class AuthService {
       if (token == null) return;
 
       tokenInfo$.subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (resp.success == false)
                throw new Error('Error accessing token info');
 
@@ -54,12 +54,12 @@ export class AuthService {
       });
    }
 
-   getTokenInfo(): Observable<IApiResponse> {
-      return this.http.get<IApiResponse>(this.baseUrl + '/token').pipe(take(1));
+   getTokenInfo(): Observable<ApiResponse> {
+      return this.http.get<ApiResponse>(this.baseUrl + '/token').pipe(take(1));
    }
 
    getAuthUser() {
-      return this.http.get<IApiResponse>(this.baseUrl + '/user').pipe(take(1));
+      return this.http.get<ApiResponse>(this.baseUrl + '/user').pipe(take(1));
    }
 
    /**
@@ -68,9 +68,9 @@ export class AuthService {
     * @example { email: 'xyz@mail.com', password: 'p@$$w0rd' }
     * @returns Observable<IApiResponse>
     */
-   register(user: Omit<IUser, '_id'>): Observable<IApiResponse> {
+   register(user: Omit<IUser, '_id'>): Observable<ApiResponse> {
       return this.http
-         .post<IApiResponse>(this.baseUrl + '/register', user)
+         .post<ApiResponse>(this.baseUrl + '/register', user)
          .pipe(take(1));
    }
 
@@ -80,9 +80,9 @@ export class AuthService {
     * @example { email: 'xyz@mail.com', password: 'p@$$w0rd' }
     * @returns Observable<IApiResponse>
     */
-   login(user: Pick<IUser, 'email' | 'password'>): Observable<IApiResponse> {
-      return this.http.post<IApiResponse>(this.baseUrl + '/login', user).pipe(
-         tap((resp: IApiResponse) => {
+   login(user: Pick<IUser, 'email' | 'password'>): Observable<ApiResponse> {
+      return this.http.post<ApiResponse>(this.baseUrl + '/login', user).pipe(
+         tap((resp: ApiResponse) => {
             if (resp.success === true) {
                this.saveLoginToken(resp.data['token']);
             } else {
