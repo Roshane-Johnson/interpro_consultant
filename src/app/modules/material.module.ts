@@ -16,11 +16,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
-
    exports: [
+      MatAutocompleteModule,
       MatTooltipModule,
       MatDividerModule,
       MatIconModule,
@@ -38,7 +40,8 @@ import {MatListModule} from '@angular/material/list';
       MatProgressSpinnerModule,
       MatSlideToggleModule,
       MatSnackBarModule,
-      MatListModule
+      MatListModule,
+      MatPaginatorModule,
    ],
 })
 export class MaterialModule {}

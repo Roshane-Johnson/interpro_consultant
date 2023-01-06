@@ -7,5 +7,8 @@ export interface IQuote {
    company: string;
    budget: number;
    message: string;
+   priority: string;
    status: string;
+   createdAt?: Date;
+   updatedAt?: Date;
 }

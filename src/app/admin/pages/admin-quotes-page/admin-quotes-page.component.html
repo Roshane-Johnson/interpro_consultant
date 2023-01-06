@@ -67,12 +67,23 @@
          class="overflow-x-auto shadow-md sm:rounded-lg"
       >
          <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <thead class="text-xs text-gray-100 bg-gray-700">
                <tr>
+                  <th
+                     (click)="reverseMode = !reverseMode; sortBy = 'priority'"
+                     scope="col"
+                     class="select-none py-3 px-6"
+                  >
+                     <!-- [matTooltip]="'Sort By: Priority'"
+                     [matTooltipPosition]="'above'" -->
+                     Priority
+                  </th>
                   <th
                      (click)="reverseMode = !reverseMode; sortBy = 'fullName'"
                      scope="col"
-                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                     class="select-none cursor-pointer hover:bg-gray-600 hover:text-gray-200 py-3 px-6"
+                     [matTooltip]="'Sort By: Full Name'"
+                     [matTooltipPosition]="'above'"
                   >
                      Name
                      <button href="#">
@@ -93,8 +104,10 @@
                      (click)="
                         reverseMode = !reverseMode; sortBy = 'phoneNumber'
                      "
+                     [matTooltip]="'Sort By: Phone Number'"
+                     [matTooltipPosition]="'above'"
                      scope="col"
-                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                     class="select-none cursor-pointer hover:bg-gray-600 hover:text-gray-200 py-3 px-6"
                   >
                      Phone
                      <button href="#">
@@ -113,8 +126,10 @@
                   </th>
                   <th
                      (click)="reverseMode = !reverseMode; sortBy = 'email'"
+                     [matTooltip]="'Sort By: Email'"
+                     [matTooltipPosition]="'above'"
                      scope="col"
-                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                     class="select-none cursor-pointer hover:bg-gray-600 hover:text-gray-200 py-3 px-6"
                   >
                      Email
                      <button href="#">
@@ -132,9 +147,11 @@
                      </button>
                   </th>
                   <th
+                     [matTooltip]="'Sort By: Budget'"
+                     [matTooltipPosition]="'above'"
                      (click)="reverseMode = !reverseMode; sortBy = 'budget'"
                      scope="col"
-                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                     class="select-none cursor-pointer hover:bg-gray-600 hover:text-gray-200 py-3 px-6"
                   >
                      Budget
                      <button href="#">
@@ -152,9 +169,11 @@
                      </button>
                   </th>
                   <th
+                     [matTooltip]="'Sort By: Service'"
+                     [matTooltipPosition]="'above'"
                      (click)="reverseMode = !reverseMode; sortBy = 'service'"
                      scope="col"
-                     class="select-none cursor-pointer hover:bg-slate-100 py-3 px-6"
+                     class="select-none cursor-pointer hover:bg-gray-600 hover:text-gray-200 py-3 px-6"
                   >
                      Service
                      <button href="#">
@@ -171,23 +190,106 @@
                         </svg>
                      </button>
                   </th>
-                  <th scope="col" NJMclass="py-3 pr-6 text-center">Actions</th>
+                  <th scope="col" class="py-3 pr-6 text-center">Actions</th>
                </tr>
             </thead>
             <tbody>
                <tr
                   class="bg-white border-b"
                   *ngFor="
-                     let quote of quotes | sort: sortBy:reverseMode;
+                     let quote of quotes | sort : sortBy : reverseMode;
                      index as i
                   "
                >
-                  <th
-                     scope="row"
+                  <td>
+                     <div class="flex justify-around items-center">
+                        <select
+                           (change)="
+                              priorityChangeHandler(quote._id, priority.value)
+                           "
+                           #priority
+                           class="w-6 p-2"
+                           name=""
+                           [value]="quote.priority"
+                        >
+                           <option value="low">Low</option>
+                           <option value="normal">Normal</option>
+                           <option value="high">High</option>
+                           <option value="urgent">Urgent</option>
+                        </select>
+                        <span
+                           [ngSwitch]="quote.priority"
+                           [matTooltip]="quote.priority | titlecase"
+                           [matTooltipPosition]="'right'"
+                        >
+                           <div *ngSwitchCase="'low'">
+                              <div
+                                 class="flex justify-center items-center relative"
+                              >
+                                 <div
+                                    class="w-6 h-6 bg-blue-200 rounded-full absolute animate-pulse"
+                                 ></div>
+                                 <div
+                                    class="w-4 h-4 bg-blue-500 rounded-full absolute"
+                                 ></div>
+                              </div>
+                           </div>
+                           <div *ngSwitchCase="'normal'">
+                              <div
+                                 class="flex justify-center items-center relative"
+                              >
+                                 <div
+                                    class="w-6 h-6 bg-green-200 rounded-full absolute animate-pulse"
+                                 ></div>
+                                 <div
+                                    class="w-4 h-4 bg-green-500 rounded-full absolute"
+                                 ></div>
+                              </div>
+                           </div>
+                           <div *ngSwitchCase="'high'">
+                              <div
+                                 class="flex justify-center items-center relative"
+                              >
+                                 <div
+                                    class="w-6 h-6 bg-orange-200 rounded-full absolute animate-pulse"
+                                 ></div>
+                                 <div
+                                    class="w-4 h-4 bg-orange-500 rounded-full absolute"
+                                 ></div>
+                              </div>
+                           </div>
+                           <div *ngSwitchCase="'urgent'">
+                              <div
+                                 class="flex justify-center items-center relative"
+                              >
+                                 <div
+                                    class="w-6 h-6 bg-red-200 rounded-full absolute animate-pulse"
+                                 ></div>
+                                 <div
+                                    class="w-4 h-4 bg-red-500 rounded-full absolute"
+                                 ></div>
+                              </div>
+                           </div>
+                           <div *ngSwitchDefault>
+                              <div
+                                 class="flex justify-center items-center relative"
+                              >
+                                 <div
+                                    class="w-6 h-6 bg-gray-200 rounded-full absolute animate-pulse"
+                                 ></div>
+                                 <div
+                                    class="w-4 h-4 bg-gray-500 rounded-full absolute"
+                                 ></div>
+                              </div>
+                           </div>
+                        </span>
+                     </div>
+                  </td>
+                  <td
                      class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
                   >
                      {{ quote.fullName }}
-                  </th>
+                  </td>
                   <td class="py-4 px-6">
                      {{ quote.phoneNumber }}
                   </td>

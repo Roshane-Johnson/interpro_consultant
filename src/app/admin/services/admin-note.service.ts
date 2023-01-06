@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,12 +12,12 @@ export class AdminNoteService {
 
    baseUrl = environment.baseUrl;
 
-   getNote(): Observable<IApiResponse> {
-      return this.http.get<IApiResponse>(this.baseUrl + '/admin/note');
+   getNote(): Observable<ApiResponse> {
+      return this.http.get<ApiResponse>(this.baseUrl + '/admin/note');
    }
 
-   updateNote(note: string): Observable<IApiResponse> {
-      return this.http.patch<IApiResponse>(this.baseUrl + '/admin/note', {
+   updateNote(note: string): Observable<ApiResponse> {
+      return this.http.patch<ApiResponse>(this.baseUrl + '/admin/note', {
          note,
       });
    }

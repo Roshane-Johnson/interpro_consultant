@@ -2,7 +2,7 @@
    <div class="greeting">
       <div>
          <h1>Hi, {{ authUser && authUser.email.split("@")[0] | titlecase }}</h1>
-         <p>Welcome back to InterPro's CRM Dashboard</p>
+         <p>Welcome back to InterPro's Dashboard</p>
       </div>
    </div>
 
@@ -39,7 +39,7 @@
          <div class="flex justify-between">
             <span class="drop-shadow font-bold text-lg">
                {{
-                  stats.notificationsSent == 0 ? "..." : stats.notificationsSent
+                  stats.notificationsSent == 0 ? "..." : "developing the power"
                }}
             </span>
             <mat-icon class="drop-shadow">send</mat-icon>
@@ -94,6 +94,7 @@
       </div>
       <div class="card p-3 bg-white rounded-md">
          <h6 class="mb-3 font-semibold">Admin Note</h6>
+
          <textarea
             ngModel
             required

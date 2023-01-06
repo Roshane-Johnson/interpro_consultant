@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
 import { take } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IApiResponse } from '../interfaces/api-response';
+import { ApiResponse } from '../interfaces/api-response';
 @Injectable({
    providedIn: 'root',
 })
@@ -32,6 +32,6 @@ export class MessageLogService {
    // }
 
    total() {
-      return this.http.get<IApiResponse>(this.baseUrl + 'total').pipe(take(1));
+      return this.http.get<ApiResponse>(this.baseUrl + 'total').pipe(take(1));
    }
 }

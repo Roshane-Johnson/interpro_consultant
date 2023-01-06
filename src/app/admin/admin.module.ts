@@ -33,7 +33,13 @@ import { AdminGuard } from './guards/admin.guard';
       AdminMessageDetailsComponent,
       SortPipe,
    ],
-   imports: [CommonModule, AdminRoutingModule, MaterialModule, ReactiveFormsModule, FormsModule],
+   imports: [
+      CommonModule,
+      AdminRoutingModule,
+      MaterialModule,
+      ReactiveFormsModule,
+      FormsModule,
+   ],
    providers: [
       AdminGuard,
       {

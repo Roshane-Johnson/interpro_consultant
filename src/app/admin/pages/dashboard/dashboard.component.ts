@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { AuthService } from 'src/app/services/auth.service';
 import { DevServiceService } from 'src/app/services/dev-service.service';
 import { HelperService } from 'src/app/services/helper.service';
@@ -41,14 +41,14 @@ export class AdminDashboardPage implements OnInit {
 
    getTotals(): void {
       this.quoteService.getAll().subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             this.stats.quotes = resp.data && resp.data['length'];
          },
          error: (error: HttpErrorResponse) => console.dir(error),
       });
 
       this.messageLogService.total().subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             this.stats.notificationsSent = resp.data['total'];
          },
          error: (error: HttpErrorResponse) => console.dir(error),
@@ -57,7 +57,7 @@ export class AdminDashboardPage implements OnInit {
 
    getServices() {
       this.apiDevService.getAll().subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             this.services = resp.data as any[];
             this.services.forEach((service: any, index: number) => {
                service.url = this.serviceUrls[index];
@@ -68,13 +68,13 @@ export class AdminDashboardPage implements OnInit {
    }
 
    getAdminNote() {
-      this.adminNoteService.getNote().subscribe((resp: IApiResponse) => {
+      this.adminNoteService.getNote().subscribe((resp: ApiResponse) => {
          this.adminNote = resp.data[0] && resp.data[0].note;
       });
    }
 
    saveAdminNote(note: string) {
-      this.adminNoteService.updateNote(note).subscribe((resp: IApiResponse) => {
+      this.adminNoteService.updateNote(note).subscribe((resp: ApiResponse) => {
          if (resp.success)
             this.helper.sendNotification('Admin note saved', 'success');
          else if (resp.success == false)
@@ -92,7 +92,7 @@ export class AdminDashboardPage implements OnInit {
 
    getAdmin(): void {
       this.authSevice.getAuthUser().subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (resp.success) this.authUser = resp.data;
          },
          error: (error: HttpErrorResponse) => {

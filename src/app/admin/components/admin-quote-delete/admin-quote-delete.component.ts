@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IQuote } from 'src/app/interfaces/api-quote';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { QuoteService } from 'src/app/services/quote.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class AdminQuoteDeleteComponent implements OnInit {
 
    getQuote() {
       this.quoteService.getOne(this.id).subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (resp.success) this.quote = resp.data as IQuote;
          },
          error: (err) => console.error(err),
@@ -28,7 +28,7 @@ export class AdminQuoteDeleteComponent implements OnInit {
 
    deleteOne() {
       this.quoteService.deleteOne(this.id).subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (resp.success) {
                window.location.reload();
             }

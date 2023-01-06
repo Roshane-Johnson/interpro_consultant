@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { ApiDevService } from 'src/app/interfaces/api-dev-service';
 import { IQuote } from 'src/app/interfaces/api-quote';
-import { IApiResponse } from 'src/app/interfaces/api-response';
+import { ApiResponse } from 'src/app/interfaces/api-response';
 import { DevServiceService } from 'src/app/services/dev-service.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { QuoteService } from 'src/app/services/quote.service';
@@ -58,7 +58,7 @@ export class GetAQuoteComponent implements OnInit {
       this.quoteForm.disable();
 
       this.quoteService.createOne(formData).subscribe({
-         next: (resp: IApiResponse) => {
+         next: (resp: ApiResponse) => {
             if (resp.success === true) {
                this.helper.sendNotification(
                   'Your quote request has been sent!',
@@ -84,7 +84,7 @@ export class GetAQuoteComponent implements OnInit {
    ngOnInit(): void {
       this.prefillEmail();
 
-      this.apiDevService.getAll().subscribe((resp: IApiResponse) => {
+      this.apiDevService.getAll().subscribe((resp: ApiResponse) => {
          this.services = [...this.services, ...(resp.data as ApiDevService[])];
       });
    }
